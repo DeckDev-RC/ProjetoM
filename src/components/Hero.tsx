@@ -101,9 +101,20 @@ const Hero = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
           onLoadedData={() => setVideoLoaded(true)}
+          onError={(e) => {
+            console.error("Erro ao carregar vídeo:", e);
+            setVideoLoaded(false);
+          }}
           style={{ zIndex: 1 }}
         >
           <source src="/Header-background-dark.mp4" type="video/mp4" />
+          <source src="/Header-background-dark.webm" type="video/webm" />
+          {/* Fallback para imagem estática */}
+          <img 
+            src="/Header-background-dark.webp" 
+            alt="Background" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
         </video>
         
         {/* Dark overlay for better text readability */}
@@ -253,9 +264,22 @@ const Hero = () => {
                       playsInline
                       className="w-full h-full object-cover"
                       style={{ opacity: 1 }}
+                      onError={(e) => {
+                        console.error("Erro ao carregar vídeo secundário:", e);
+                        const videoElement = e.target as HTMLVideoElement;
+                        if (videoElement.parentElement) {
+                          videoElement.parentElement.style.display = 'none';
+                        }
+                      }}
                     >
                       <source src="/0617.mp4" type="video/mp4" />
-                      Seu navegador não suporta o elemento de vídeo.
+                      <source src="/0617.webm" type="video/webm" />
+                      {/* Fallback para imagem estática */}
+                      <img 
+                        src="/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png" 
+                        alt="Video Fallback" 
+                        className="w-full h-full object-cover"
+                      />
                     </video>
                   </div>
                 </div>
