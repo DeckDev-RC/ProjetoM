@@ -13,9 +13,9 @@ const Navbar = () => {
   const deviceInfo = useDeviceDetection();
   const orientation = useOrientation();
   
-  // Detectar se é landscape e mobile
+  // Detectar se é landscape e mobile com lógica mais robusta
   const isLandscape = orientation === 'landscape';
-  const isMobileLandscape = (deviceInfo.isMobile || deviceInfo.isTablet) && isLandscape;
+  const isMobileLandscape = (deviceInfo.isMobile || deviceInfo.isTablet || window.innerWidth <= 768) && isLandscape;
   
   // Detectar se é realmente mobile (incluindo iPhone/iPad em landscape)
   const [isTrueMobile, setIsTrueMobile] = useState(false);
@@ -25,19 +25,21 @@ const Navbar = () => {
       // Detectar dispositivos móveis baseado em user agent E tamanho de tela
       const userAgent = navigator.userAgent.toLowerCase();
       const isMobileUA = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      const isSmallScreen = window.innerWidth < 1024; // Menor que desktop
+      const isSmallScreen = window.innerWidth <= 768; // Mudado para <= 768 para ser mais consistente
       const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
       
-      // É mobile se: tem user agent mobile OU (tela pequena E touch)
-      setIsTrueMobile(isMobileUA || (isSmallScreen && isTouchDevice));
+      // É mobile se: tem user agent mobile OU (tela pequena E touch) OU apenas tela pequena
+      setIsTrueMobile(isMobileUA || (isSmallScreen && isTouchDevice) || isSmallScreen);
     };
     
     checkTrueMobile();
     
     window.addEventListener('resize', checkTrueMobile);
+    window.addEventListener('orientationchange', checkTrueMobile);
     
     return () => {
       window.removeEventListener('resize', checkTrueMobile);
+      window.removeEventListener('orientationchange', checkTrueMobile);
     };
   }, []);
 
@@ -74,6 +76,19 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  // Fechar menu com tecla ESC
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+        document.body.style.overflow = '';
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -95,6 +110,10 @@ const Navbar = () => {
     'tablet-md': 'w-34 h-auto max-w-34',
     'desktop': 'w-72 h-auto max-w-72 sm:w-80 sm:max-w-80' // Aumentado mais 25% (56→70→72, 60→75→80)
   }, 'w-72 h-auto max-w-72 sm:w-80 sm:max-w-80');
+
+  // Dimensões do menu mobile otimizadas para landscape
+  const mobileMenuWidth = isMobileLandscape ? '50%' : '75%';
+  const mobileMenuMaxWidth = isMobileLandscape ? '280px' : '400px';
 
   return (
     <header
@@ -145,11 +164,11 @@ const Navbar = () => {
         )}
 
         {/* Mobile Menu Button - mostra para todos os dispositivos móveis, incluindo iPhone landscape */}
-        {(isTrueMobile || deviceInfo.isMobile || deviceInfo.isTablet) && (
+        {isTrueMobile && (
           <div className="flex items-center space-x-4">
             {/* Mobile menu button - increased touch target */}
             <button 
-              className="menu-button text-gray-200 p-3 focus:outline-none" 
+              className="menu-button text-gray-200 p-3 focus:outline-none hover:bg-white/10 rounded-lg transition-colors" 
               onClick={toggleMenu}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
@@ -162,140 +181,157 @@ const Navbar = () => {
       {/* Mobile Navigation Overlay */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-black/80 transition-opacity duration-300 ease-in-out"
+          className="fixed inset-0 z-[60] bg-black/80 transition-opacity duration-300 ease-in-out backdrop-blur-sm"
           onClick={() => {
             setIsMenuOpen(false);
             document.body.style.overflow = '';
+          }}
+          style={{ 
+            height: '100vh',
+            width: '100vw',
+            top: 0,
+            left: 0
           }}
         />
       )}
 
       {/* Mobile Navigation Panel */}
-      <div 
-        className={cn(
-          "fixed top-0 right-0 h-full w-3/4 max-w-sm bg-gray-900 border-l border-gray-700 shadow-xl transform transition-transform duration-300 ease-in-out z-50 overflow-y-auto",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        {/* Botão de fechamento */}
-        <button 
-          className="absolute right-4 top-4 rounded-sm p-2 text-gray-400 opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10" 
-          onClick={toggleMenu}
-          aria-label="Close menu"
+      {isMenuOpen && (
+        <div 
+          className={cn(
+            "fixed top-0 right-0 z-[70] bg-gray-900 border-l border-gray-700 shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto",
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+          style={{ 
+            height: '100vh',
+            width: mobileMenuWidth,
+            maxWidth: mobileMenuMaxWidth,
+            minHeight: '100vh'
+          }}
         >
-          <X size={20} />
-        </button>
-        
-        {/* Conteúdo do menu - ajustado para landscape com scroll */}
-        <div className={cn(
-          "flex flex-col h-full",
-          isMobileLandscape ? "pt-12 p-4 gap-2" : "pt-16 p-6 gap-6"
-        )}>
-          {/* Links de navegação */}
-          <div className="flex flex-col gap-3">
-            <a 
-              href="#" 
-              className={cn(
-                "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
-                isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
-              )}
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-                scrollToTop();
-              }}
-            >
-              Home
-            </a>
-            <a 
-              href="#features" 
-              className={cn(
-                "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
-                isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Recursos
-            </a>
-            <a 
-              href="#process-optimization" 
-              className={cn(
-                "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
-                isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Estratégia
-            </a>
-            <a 
-              href="#faq" 
-              className={cn(
-                "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
-                isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              FAQ
-            </a>
-            <a 
-              href="#contact" 
-              className={cn(
-                "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
-                isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
-              )}
-              onClick={() => {
-                setIsMenuOpen(false);
-                document.body.style.overflow = '';
-              }}
-            >
-              Contato
-            </a>
-            
-            {/* Botão Começar Agora - logo abaixo de Contato */}
+          {/* Botão de fechamento */}
+          <button 
+            className="absolute right-4 top-4 rounded-sm p-2 text-gray-400 opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 z-10" 
+            onClick={toggleMenu}
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
+          
+          {/* Conteúdo do menu - ajustado para landscape com scroll */}
+          <div className={cn(
+            "flex flex-col h-full",
+            isMobileLandscape ? "pt-12 p-4 gap-2" : "pt-16 p-6 gap-6"
+          )}>
+            {/* Links de navegação */}
             <div className={cn(
-              "mt-2",
-              isMobileLandscape ? "mt-1" : "mt-3"
+              "flex flex-col",
+              isMobileLandscape ? "gap-2" : "gap-4"
             )}>
-              <button 
+              <a 
+                href="#" 
                 className={cn(
-                  "w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 font-sans",
-                  isMobileLandscape ? "h-8" : "h-12"
+                  "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
+                  isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
                 )}
-                style={{
-                  background: 'linear-gradient(135deg, #7c3aed, #8b5cf6, #2abfff, #06b6d4)',
-                  backgroundSize: '300% 300%',
-                  animation: 'gradientFlow 4s ease-in-out infinite',
-                  color: 'white'
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMenuOpen(false);
+                  document.body.style.overflow = '';
+                  scrollToTop();
                 }}
+              >
+                Home
+              </a>
+              <a 
+                href="#features" 
+                className={cn(
+                  "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
+                  isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
+                )}
                 onClick={() => {
                   setIsMenuOpen(false);
                   document.body.style.overflow = '';
-                  // Navegar para seção de contato para começar
-                  const contactSection = document.querySelector('#contact');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    // Fallback: scroll para o final da página se não encontrar a seção
-                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                  }
                 }}
               >
-                Começar Agora
-              </button>
+                Recursos
+              </a>
+              <a 
+                href="#process-optimization" 
+                className={cn(
+                  "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
+                  isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
+                )}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  document.body.style.overflow = '';
+                }}
+              >
+                Estratégia
+              </a>
+              <a 
+                href="#faq" 
+                className={cn(
+                  "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
+                  isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
+                )}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  document.body.style.overflow = '';
+                }}
+              >
+                FAQ
+              </a>
+              <a 
+                href="#contact" 
+                className={cn(
+                  "text-gray-400 hover:text-white transition-colors duration-300 font-sans",
+                  isMobileLandscape ? "text-sm py-1" : "text-lg py-2"
+                )}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  document.body.style.overflow = '';
+                }}
+              >
+                Contato
+              </a>
+              
+              {/* Botão Começar Agora - logo abaixo de Contato */}
+              <div className={cn(
+                "mt-2",
+                isMobileLandscape ? "mt-2" : "mt-4"
+              )}>
+                <button 
+                  className={cn(
+                    "w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 font-sans",
+                    isMobileLandscape ? "h-8 text-xs" : "h-12"
+                  )}
+                  style={{
+                    background: 'linear-gradient(135deg, #7c3aed, #8b5cf6, #2abfff, #06b6d4)',
+                    backgroundSize: '300% 300%',
+                    animation: 'gradientFlow 4s ease-in-out infinite',
+                    color: 'white'
+                  }}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    document.body.style.overflow = '';
+                    // Navegar para seção de contato para começar
+                    const contactSection = document.querySelector('#contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                      // Fallback: scroll para o final da página se não encontrar a seção
+                      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  Começar Agora
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
