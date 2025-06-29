@@ -258,7 +258,6 @@ const ProcessOptimizationSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = React.useState(false);
-  const [forceUpdate, setForceUpdate] = React.useState(0);
   
   // Usar hooks de responsividade
   const deviceInfo = useDeviceDetection();
@@ -266,23 +265,7 @@ const ProcessOptimizationSection = () => {
   const innerScale = useResponsiveInnerScale();
   const animation = useResponsiveAnimation();
 
-  // Forçar re-render quando orientação mudar para garantir layout correto
-  useEffect(() => {
-    const handleOrientationChange = () => {
-      // Pequeno delay para garantir que as dimensões sejam atualizadas
-      setTimeout(() => {
-        setForceUpdate(prev => prev + 1);
-      }, 100);
-    };
-
-    window.addEventListener('orientationchange', handleOrientationChange);
-    window.addEventListener('resize', handleOrientationChange);
-
-    return () => {
-      window.removeEventListener('orientationchange', handleOrientationChange);
-      window.removeEventListener('resize', handleOrientationChange);
-    };
-  }, []);
+  // Não precisamos de re-render para orientação no mobile pois o layout é sempre o mesmo
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -615,15 +598,15 @@ const ProcessOptimizationSection = () => {
               clear: both !important;
             }
 
-            /* LANDSCAPE MOBILE - forçar mesmo comportamento que portrait */
-            @media (max-width: 768px) and (orientation: landscape) {
+            /* MOBILE - PORTRAIT E LANDSCAPE IDÊNTICOS (sem diferenças) */
+            @media (max-width: 768px) {
               #process-optimization {
                 overflow-x: hidden !important;
                 overflow-y: auto !important;
               }
 
               .mobile-static-layout {
-                padding: 1.5rem 1rem !important;
+                padding: 2rem 1rem !important;
                 min-height: auto !important;
                 height: auto !important;
                 display: block !important;
@@ -631,8 +614,8 @@ const ProcessOptimizationSection = () => {
               }
 
               .mobile-cards-container {
-                gap: 1.25rem !important;
-                max-width: 24rem !important;
+                gap: 1.5rem !important;
+                max-width: 28rem !important;
                 padding: 0 !important;
                 margin: 0 auto !important;
                 display: flex !important;
@@ -642,7 +625,7 @@ const ProcessOptimizationSection = () => {
               }
 
               .mobile-strategy-card {
-                max-width: 18rem !important;
+                max-width: 20rem !important;
                 margin: 0 auto !important;
                 margin-bottom: 0 !important;
                 width: 100% !important;
@@ -650,29 +633,13 @@ const ProcessOptimizationSection = () => {
                 transform: none !important;
               }
 
-              /* Cards compactos em landscape mas mantendo layout vertical */
+              /* Cards com formatação IDÊNTICA em portrait e landscape */
               .mobile-strategy-card > div {
                 padding: 1rem !important;
                 min-height: auto !important;
                 height: auto !important;
                 position: relative !important;
                 transform: none !important;
-              }
-            }
-
-            /* PORTRAIT MOBILE - comportamento padrão */
-            @media (max-width: 768px) and (orientation: portrait) {
-              .mobile-static-layout {
-                padding: 2rem 1rem !important;
-              }
-
-              .mobile-cards-container {
-                gap: 1.5rem !important;
-                max-width: 20rem !important;
-              }
-
-              .mobile-strategy-card {
-                max-width: 18rem !important;
               }
             }
 
