@@ -1,0 +1,392 @@
+{
+  "timestamp": "2025-06-28T21:46:18.959972",
+  "total_size": 1356403,
+  "total_gzipped_size": 843152,
+  "files": [
+    {
+      "name": "brockmann-medium-webfont.ttf",
+      "path": "brockmann-medium-webfont.ttf",
+      "size": 57140,
+      "gzipped_size": 25745,
+      "type": "font",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "d0f14418"
+    },
+    {
+      "name": "brockmann-medium.otf",
+      "path": "brockmann-medium.otf",
+      "size": 41108,
+      "gzipped_size": 27077,
+      "type": "font",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "fbd10703"
+    },
+    {
+      "name": "logo.svg",
+      "path": "logo.svg",
+      "size": 25446,
+      "gzipped_size": 10262,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "29847ef8"
+    },
+    {
+      "name": "placeholder.svg",
+      "path": "placeholder.svg",
+      "size": 3253,
+      "gzipped_size": 923,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "35707bd9"
+    },
+    {
+      "name": "animations-Do9ZUY9C.js",
+      "path": "assets\\animations-Do9ZUY9C.js",
+      "size": 30,
+      "gzipped_size": 50,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "8d27f5c0"
+    },
+    {
+      "name": "Contact-Mz9zriJv.js",
+      "path": "assets\\Contact-Mz9zriJv.js",
+      "size": 6337,
+      "gzipped_size": 1997,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "017685a6"
+    },
+    {
+      "name": "FAQ-BwdliyIx.js",
+      "path": "assets\\FAQ-BwdliyIx.js",
+      "size": 5451,
+      "gzipped_size": 2353,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "68183bc1"
+    },
+    {
+      "name": "Features-C7TIsqM8.js",
+      "path": "assets\\Features-C7TIsqM8.js",
+      "size": 7977,
+      "gzipped_size": 2810,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "bb661c39"
+    },
+    {
+      "name": "index-BjSxkJ25.js",
+      "path": "assets\\index-BjSxkJ25.js",
+      "size": 240933,
+      "gzipped_size": 58239,
+      "type": "js",
+      "chunk_type": "main",
+      "dependencies": [
+        "./ProcessOptimizationSection-D6PwGalU.js",
+        "./FAQ-BwdliyIx.js",
+        "./Contact-Mz9zriJv.js",
+        "./PartnersSection-C4eH3AVG.js",
+        "./Features-C7TIsqM8.js"
+      ],
+      "hash": "f18fdf02"
+    },
+    {
+      "name": "index-DGonCWfX.css",
+      "path": "assets\\index-DGonCWfX.css",
+      "size": 109627,
+      "gzipped_size": 17931,
+      "type": "css",
+      "chunk_type": "main",
+      "dependencies": [],
+      "hash": "11649a25"
+    },
+    {
+      "name": "PartnersSection-C4eH3AVG.js",
+      "path": "assets\\PartnersSection-C4eH3AVG.js",
+      "size": 2197,
+      "gzipped_size": 910,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "3eb4271c"
+    },
+    {
+      "name": "ProcessOptimizationSection-D6PwGalU.js",
+      "path": "assets\\ProcessOptimizationSection-D6PwGalU.js",
+      "size": 11802,
+      "gzipped_size": 3783,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "8179cf69"
+    },
+    {
+      "name": "ResponsiveImage-CptbkdPD.js",
+      "path": "assets\\ResponsiveImage-CptbkdPD.js",
+      "size": 1403,
+      "gzipped_size": 826,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "d8d0f995"
+    },
+    {
+      "name": "router-BgRqhL1c.js",
+      "path": "assets\\router-BgRqhL1c.js",
+      "size": 15391,
+      "gzipped_size": 5899,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "d41d6132"
+    },
+    {
+      "name": "ui-BBVlNzYX.js",
+      "path": "assets\\ui-BBVlNzYX.js",
+      "size": 45178,
+      "gzipped_size": 15819,
+      "type": "js",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "70b9b589"
+    },
+    {
+      "name": "vendor-tJCkmJFK.js",
+      "path": "assets\\vendor-tJCkmJFK.js",
+      "size": 141270,
+      "gzipped_size": 45337,
+      "type": "js",
+      "chunk_type": "vendor",
+      "dependencies": [],
+      "hash": "c4221b48"
+    },
+    {
+      "name": "Agregar.webp",
+      "path": "webp\\Agregar.webp",
+      "size": 50520,
+      "gzipped_size": 39017,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "961ac917"
+    },
+    {
+      "name": "atendimento.webp",
+      "path": "webp\\atendimento.webp",
+      "size": 99860,
+      "gzipped_size": 99084,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "8fe504a0"
+    },
+    {
+      "name": "Automatize-com-inteligencia.webp",
+      "path": "webp\\Automatize-com-inteligencia.webp",
+      "size": 79776,
+      "gzipped_size": 78765,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "fa9e4fce"
+    },
+    {
+      "name": "Conecte-tudo-precisao.webp",
+      "path": "webp\\Conecte-tudo-precisao.webp",
+      "size": 86562,
+      "gzipped_size": 85525,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "78f0e4db"
+    },
+    {
+      "name": "Crescimento-monitoramento-total.webp",
+      "path": "webp\\Crescimento-monitoramento-total.webp",
+      "size": 96268,
+      "gzipped_size": 94558,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "f059b35a"
+    },
+    {
+      "name": "Fluxos-estrategicos-adaptaveis.webp",
+      "path": "webp\\Fluxos-estrategicos-adaptaveis.webp",
+      "size": 61870,
+      "gzipped_size": 60519,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "c107e84a"
+    },
+    {
+      "name": "logo.webp",
+      "path": "webp\\logo.webp",
+      "size": 15620,
+      "gzipped_size": 15262,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "05dd31c5"
+    },
+    {
+      "name": "processos.webp",
+      "path": "webp\\processos.webp",
+      "size": 94568,
+      "gzipped_size": 94470,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "048826ac"
+    },
+    {
+      "name": "vendas.webp",
+      "path": "webp\\vendas.webp",
+      "size": 56816,
+      "gzipped_size": 55991,
+      "type": "image",
+      "chunk_type": "other",
+      "dependencies": [],
+      "hash": "f946c519"
+    }
+  ],
+  "chunks_count": 11,
+  "duplicated_code": [],
+  "optimization_suggestions": [
+    "🗜️ Arquivo 'animations-Do9ZUY9C.js' com baixa compressão (166.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'atendimento.webp' com baixa compressão (99.2%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Automatize-com-inteligencia.webp' com baixa compressão (98.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Conecte-tudo-precisao.webp' com baixa compressão (98.8%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Crescimento-monitoramento-total.webp' com baixa compressão (98.2%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Fluxos-estrategicos-adaptaveis.webp' com baixa compressão (97.8%). Verifique conteúdo.",
+    "🗜️ Arquivo 'logo.webp' com baixa compressão (97.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'processos.webp' com baixa compressão (99.9%). Verifique conteúdo.",
+    "🗜️ Arquivo 'vendas.webp' com baixa compressão (98.5%). Verifique conteúdo.",
+    "⚡ Nenhum chunk lazy detectado. Considere implementar lazy loading."
+  ],
+  "dependency_analysis": {
+    "total_dependencies": 5,
+    "external_dependencies": 0,
+    "internal_dependencies": 5,
+    "top_dependencies": [
+      {
+        "name": "./ProcessOptimizationSection-D6PwGalU.js",
+        "usage_count": 1
+      },
+      {
+        "name": "./FAQ-BwdliyIx.js",
+        "usage_count": 1
+      },
+      {
+        "name": "./Contact-Mz9zriJv.js",
+        "usage_count": 1
+      },
+      {
+        "name": "./PartnersSection-C4eH3AVG.js",
+        "usage_count": 1
+      },
+      {
+        "name": "./Features-C7TIsqM8.js",
+        "usage_count": 1
+      }
+    ],
+    "unused_dependencies": [
+      "lottie-react",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-navigation-menu",
+      "clsx",
+      "@radix-ui/react-toggle-group",
+      "@radix-ui/react-alert-dialog",
+      "eslint",
+      "recharts",
+      "vite",
+      "next-themes",
+      "@radix-ui/react-hover-card",
+      "date-fns",
+      "@radix-ui/react-select",
+      "@radix-ui/react-slider",
+      "@radix-ui/react-switch",
+      "tailwindcss-animate",
+      "typescript",
+      "react-resizable-panels",
+      "@eslint/js",
+      "embla-carousel-react",
+      "zod",
+      "@radix-ui/react-context-menu",
+      "@radix-ui/react-menubar",
+      "@types/node",
+      "tailwind-merge",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-collapsible",
+      "@radix-ui/react-label",
+      "autoprefixer",
+      "@radix-ui/react-avatar",
+      "cmdk",
+      "eslint-plugin-react-hooks",
+      "tailwindcss",
+      "@vitejs/plugin-react-swc",
+      "@radix-ui/react-popover",
+      "react",
+      "react-day-picker",
+      "@radix-ui/react-toggle",
+      "eslint-plugin-react-refresh",
+      "@radix-ui/react-toast",
+      "@radix-ui/react-scroll-area",
+      "@radix-ui/react-slot",
+      "sonner",
+      "@radix-ui/react-radio-group",
+      "@radix-ui/react-progress",
+      "@tailwindcss/typography",
+      "@radix-ui/react-tooltip",
+      "vaul",
+      "lucide-react",
+      "postcss",
+      "react-router-dom",
+      "@radix-ui/react-separator",
+      "lovable-tagger",
+      "input-otp",
+      "@radix-ui/react-checkbox",
+      "class-variance-authority",
+      "@types/react",
+      "react-dom",
+      "globals",
+      "@radix-ui/react-dialog",
+      "@hookform/resolvers",
+      "@types/react-dom",
+      "@tanstack/react-query",
+      "react-hook-form",
+      "typescript-eslint",
+      "@radix-ui/react-aspect-ratio",
+      "@radix-ui/react-dropdown-menu"
+    ]
+  },
+  "performance_impact": {
+    "critical_path_size": 382203,
+    "total_lazy_size": 0,
+    "chunk_distribution": {
+      "main": 1,
+      "vendor": 1,
+      "lazy": 0
+    },
+    "estimated_loading_times": {
+      "3G": 1.8224859237670898,
+      "4G": 0.32399749755859375,
+      "WiFi": 0.09719924926757813
+    },
+    "compression_efficiency": {
+      "ratio": 0.6216087696650626,
+      "savings": 513251,
+      "efficiency": "poor"
+    }
+  }
+}

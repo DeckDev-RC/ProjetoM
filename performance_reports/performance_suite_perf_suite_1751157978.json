@@ -1,0 +1,23 @@
+{
+  "fcp_avg": 0,
+  "lcp_avg": 0,
+  "cls_avg": 0,
+  "fid_avg": 0,
+  "ttfb_avg": 0,
+  "performance_score": 100,
+  "accessibility_score": 85,
+  "best_practices_score": 80,
+  "seo_score": 75,
+  "total_resources": 67,
+  "total_size_mb": 4.654135704040527,
+  "scripts_size_kb": 4708.26953125,
+  "images_size_kb": 0.0,
+  "heap_used_mb": 16.530320167541504,
+  "dom_nodes": 587,
+  "long_tasks": 0,
+  "avg_response_time": 8.530158729780288,
+  "failed_requests": 0,
+  "critical_issues": 1,
+  "warnings": 1,
+  "network_tests_completed": true
+}

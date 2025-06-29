@@ -1,0 +1,331 @@
+{
+  "timestamp": "2025-06-28 20:17:43",
+  "assets": {
+    "images": [
+      {
+        "name": "favicon.ico",
+        "path": "public\\favicon.ico",
+        "size": 17249,
+        "size_kb": 16.8447265625,
+        "size_mb": 0.016449928283691406,
+        "type": "image",
+        "extension": ".ico"
+      },
+      {
+        "name": "logo.svg",
+        "path": "public\\logo.svg",
+        "size": 25446,
+        "size_kb": 24.849609375,
+        "size_mb": 0.024267196655273438,
+        "type": "image",
+        "extension": ".svg"
+      },
+      {
+        "name": "placeholder.svg",
+        "path": "public\\placeholder.svg",
+        "size": 3253,
+        "size_kb": 3.1767578125,
+        "size_mb": 0.0031023025512695312,
+        "type": "image",
+        "extension": ".svg"
+      },
+      {
+        "name": "Agregar.webp",
+        "path": "public\\webp\\Agregar.webp",
+        "size": 50520,
+        "size_kb": 49.3359375,
+        "size_mb": 0.04817962646484375,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "atendimento.webp",
+        "path": "public\\webp\\atendimento.webp",
+        "size": 99860,
+        "size_kb": 97.51953125,
+        "size_mb": 0.09523391723632812,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "Automatize-com-inteligencia.webp",
+        "path": "public\\webp\\Automatize-com-inteligencia.webp",
+        "size": 79776,
+        "size_kb": 77.90625,
+        "size_mb": 0.076080322265625,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "Conecte-tudo-precisao.webp",
+        "path": "public\\webp\\Conecte-tudo-precisao.webp",
+        "size": 86562,
+        "size_kb": 84.533203125,
+        "size_mb": 0.08255195617675781,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "Crescimento-monitoramento-total.webp",
+        "path": "public\\webp\\Crescimento-monitoramento-total.webp",
+        "size": 96268,
+        "size_kb": 94.01171875,
+        "size_mb": 0.09180831909179688,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "Fluxos-estrategicos-adaptaveis.webp",
+        "path": "public\\webp\\Fluxos-estrategicos-adaptaveis.webp",
+        "size": 61870,
+        "size_kb": 60.419921875,
+        "size_mb": 0.05900382995605469,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "logo.webp",
+        "path": "public\\webp\\logo.webp",
+        "size": 15620,
+        "size_kb": 15.25390625,
+        "size_mb": 0.014896392822265625,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "processos.webp",
+        "path": "public\\webp\\processos.webp",
+        "size": 94568,
+        "size_kb": 92.3515625,
+        "size_mb": 0.09018707275390625,
+        "type": "image",
+        "extension": ".webp"
+      },
+      {
+        "name": "vendas.webp",
+        "path": "public\\webp\\vendas.webp",
+        "size": 56816,
+        "size_kb": 55.484375,
+        "size_mb": 0.0541839599609375,
+        "type": "image",
+        "extension": ".webp"
+      }
+    ],
+    "videos": [
+      {
+        "name": "0617.mp4",
+        "path": "public\\0617.mp4",
+        "size": 3403258,
+        "size_kb": 3323.494140625,
+        "size_mb": 3.2455997467041016,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "0625.mp4",
+        "path": "public\\0625.mp4",
+        "size": 8601920,
+        "size_kb": 8400.3125,
+        "size_mb": 8.20343017578125,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "Header-background-dark.mp4",
+        "path": "public\\Header-background-dark.mp4",
+        "size": 2473134,
+        "size_kb": 2415.169921875,
+        "size_mb": 2.3585643768310547,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "Using_the_reference_202506212005.mp4",
+        "path": "public\\Using_the_reference_202506212005.mp4",
+        "size": 6037800,
+        "size_kb": 5896.2890625,
+        "size_mb": 5.758094787597656,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "0617.webm",
+        "path": "public\\webm\\0617.webm",
+        "size": 120534,
+        "size_kb": 117.708984375,
+        "size_mb": 0.11495018005371094,
+        "type": "video",
+        "extension": ".webm"
+      },
+      {
+        "name": "0625.webm",
+        "path": "public\\webm\\0625.webm",
+        "size": 1039684,
+        "size_kb": 1015.31640625,
+        "size_mb": 0.9915199279785156,
+        "type": "video",
+        "extension": ".webm"
+      },
+      {
+        "name": "Header-background-dark.webm",
+        "path": "public\\webm\\Header-background-dark.webm",
+        "size": 379010,
+        "size_kb": 370.126953125,
+        "size_mb": 0.3614521026611328,
+        "type": "video",
+        "extension": ".webm"
+      },
+      {
+        "name": "Using_the_reference_202506212005.webm",
+        "path": "public\\webm\\Using_the_reference_202506212005.webm",
+        "size": 963388,
+        "size_kb": 940.80859375,
+        "size_mb": 0.9187583923339844,
+        "type": "video",
+        "extension": ".webm"
+      }
+    ],
+    "fonts": [],
+    "total_size": 23808415,
+    "large_files": [
+      {
+        "name": "0617.mp4",
+        "path": "public\\0617.mp4",
+        "size": 3403258,
+        "size_kb": 3323.494140625,
+        "size_mb": 3.2455997467041016,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "0625.mp4",
+        "path": "public\\0625.mp4",
+        "size": 8601920,
+        "size_kb": 8400.3125,
+        "size_mb": 8.20343017578125,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "Header-background-dark.mp4",
+        "path": "public\\Header-background-dark.mp4",
+        "size": 2473134,
+        "size_kb": 2415.169921875,
+        "size_mb": 2.3585643768310547,
+        "type": "video",
+        "extension": ".mp4"
+      },
+      {
+        "name": "Using_the_reference_202506212005.mp4",
+        "path": "public\\Using_the_reference_202506212005.mp4",
+        "size": 6037800,
+        "size_kb": 5896.2890625,
+        "size_mb": 5.758094787597656,
+        "type": "video",
+        "extension": ".mp4"
+      }
+    ],
+    "issues": [
+      "Arquivo grande: 0617.mp4 (3.25MB)",
+      "Arquivo grande: 0625.mp4 (8.20MB)",
+      "Arquivo grande: Header-background-dark.mp4 (2.36MB)",
+      "Arquivo grande: Using_the_reference_202506212005.mp4 (5.76MB)"
+    ]
+  },
+  "code": {
+    "total_files": 82,
+    "total_lines": 11419,
+    "large_files": [
+      {
+        "file": "src\\components\\CookieBanner.tsx",
+        "lines": 287
+      },
+      {
+        "file": "src\\components\\Features.tsx",
+        "lines": 350
+      },
+      {
+        "file": "src\\components\\Hero.tsx",
+        "lines": 369
+      },
+      {
+        "file": "src\\components\\HumanoidSection.tsx",
+        "lines": 229
+      },
+      {
+        "file": "src\\components\\Navbar.tsx",
+        "lines": 267
+      },
+      {
+        "file": "src\\components\\ProcessOptimizationSection.tsx",
+        "lines": 525
+      },
+      {
+        "file": "src\\hooks\\use-mobile.tsx",
+        "lines": 270
+      },
+      {
+        "file": "src\\pages\\CookiePolicy.tsx",
+        "lines": 626
+      },
+      {
+        "file": "src\\pages\\PrivacyPolicy.tsx",
+        "lines": 647
+      },
+      {
+        "file": "src\\pages\\TermsOfService.tsx",
+        "lines": 656
+      },
+      {
+        "file": "src\\components\\ui\\carousel.tsx",
+        "lines": 261
+      },
+      {
+        "file": "src\\components\\ui\\chart.tsx",
+        "lines": 364
+      },
+      {
+        "file": "src\\components\\ui\\menubar.tsx",
+        "lines": 235
+      },
+      {
+        "file": "src\\components\\ui\\orbs.tsx",
+        "lines": 355
+      },
+      {
+        "file": "src\\components\\ui\\sidebar.tsx",
+        "lines": 762
+      }
+    ],
+    "hooks_usage": {
+      "useState": 56,
+      "useEffect": 56,
+      "useRef": 37,
+      "useMemo": 4,
+      "useCallback": 6,
+      "useContext": 7
+    },
+    "performance_issues": [
+      "Hero.tsx: Muitas animações (8)",
+      "Hero.tsx: useEffect sem array de dependências otimizado",
+      "Navbar.tsx: useEffect sem array de dependências otimizado",
+      "ProcessOptimizationSection.tsx: Muitas animações (7)",
+      "ResponsiveImage.tsx: useEffect sem array de dependências otimizado",
+      "CookiePolicy.tsx: Muitos orbs (possível impacto na performance)",
+      "Index.tsx: Muitas animações (8)",
+      "Index.tsx: Muitos orbs (possível impacto na performance)",
+      "NotFound.tsx: useEffect sem array de dependências otimizado",
+      "PrivacyPolicy.tsx: Muitos orbs (possível impacto na performance)",
+      "TermsOfService.tsx: Muitos orbs (possível impacto na performance)",
+      "navigation-menu.tsx: Muitas animações (6)",
+      "orbs.tsx: Muitos orbs (possível impacto na performance)"
+    ]
+  },
+  "summary": {
+    "total_assets_mb": 22.70547389984131,
+    "large_files_count": 4,
+    "code_files": 82,
+    "code_lines": 11419,
+    "performance_issues": 13
+  }
+}
