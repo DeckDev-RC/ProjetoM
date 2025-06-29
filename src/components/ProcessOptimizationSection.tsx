@@ -7,6 +7,60 @@ import {
 } from "@/hooks/useResponsiveUtils";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
+// Função robusta para detectar dispositivos móveis reais
+const isRealMobileDevice = (): boolean => {
+  // Verificar se estamos no browser
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return false;
+  }
+
+  // 1. Detectar pelo User Agent
+  const userAgent = navigator.userAgent.toLowerCase();
+  const mobileKeywords = [
+    'mobile', 'android', 'iphone', 'ipod', 'blackberry', 
+    'windows phone', 'opera mini', 'iemobile', 'mobile safari'
+  ];
+  
+  const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
+  
+  // 2. Detectar dispositivos iOS específicos (incluindo iPads que podem reportar como desktop)
+  const isIOS = /ipad|iphone|ipod/.test(userAgent) || 
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+  // 3. Detectar Android
+  const isAndroid = userAgent.includes('android');
+  
+  // 4. Verificar touch capability
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  // 5. Verificar densidade de pixels (dispositivos móveis geralmente têm DPR > 1)
+  const hasHighDPR = window.devicePixelRatio > 1;
+  
+  // 6. Verificar se a menor dimensão é típica de mobile (mesmo em landscape)
+  const smallerDimension = Math.min(window.innerWidth, window.innerHeight);
+  const isMobileSize = smallerDimension <= 480;
+  
+  // 7. Verificar se é landscape em dispositivo móvel (largura > altura mas altura pequena)
+  const isLandscapeMobile = window.innerWidth > window.innerHeight && window.innerHeight <= 500;
+  
+  // 8. Detectar se é realmente um tablet grande (iPad Pro, etc.)
+  const isLargeTablet = (
+    (userAgent.includes('ipad') && window.innerWidth > 1000 && window.innerHeight > 700) ||
+    (userAgent.includes('android') && window.innerWidth > 900 && window.innerHeight > 600 && !userAgent.includes('mobile'))
+  );
+  
+  // Lógica de decisão: é mobile se:
+  // - Tem indicadores de mobile no UA, OU
+  // - É iOS/Android E tem touch E (tem alta DPR OU tamanho pequeno OU é landscape mobile)
+  // - MAS NÃO é um tablet grande
+  const isMobile = (
+    isMobileUA || 
+    ((isIOS || isAndroid) && hasTouch && (hasHighDPR || isMobileSize || isLandscapeMobile))
+  ) && !isLargeTablet;
+  
+  return isMobile;
+};
+
 // SVG Connector Component (apenas para desktop)
 interface ConnectorProps {
   from: { x: number; y: number };
@@ -265,7 +319,26 @@ const ProcessOptimizationSection = () => {
   const innerScale = useResponsiveInnerScale();
   const animation = useResponsiveAnimation();
 
-  // Não precisamos de re-render para orientação no mobile pois o layout é sempre o mesmo
+  // Detectar se é realmente um dispositivo móvel
+  const [isRealMobile, setIsRealMobile] = React.useState(false);
+  
+  React.useEffect(() => {
+    // Detectar na montagem e em mudanças de orientação
+    const checkDevice = () => {
+      setIsRealMobile(isRealMobileDevice());
+    };
+    
+    checkDevice();
+    
+    // Listener para mudanças de orientação
+    window.addEventListener('orientationchange', checkDevice);
+    window.addEventListener('resize', checkDevice);
+    
+    return () => {
+      window.removeEventListener('orientationchange', checkDevice);
+      window.removeEventListener('resize', checkDevice);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -532,7 +605,7 @@ const ProcessOptimizationSection = () => {
       ref={sectionRef}
     >
       {/* CSS para desktop */}
-      {!deviceInfo.isMobile && (
+      {!isRealMobile && (
         <style dangerouslySetInnerHTML={{
           __html: `
             @keyframes gradientFlow {
@@ -556,7 +629,7 @@ const ProcessOptimizationSection = () => {
       )}
 
       {/* CSS específico para mobile - portrait e landscape */}
-      {deviceInfo.isMobile && (
+      {isRealMobile && (
         <style dangerouslySetInnerHTML={{
           __html: `
             /* FORÇA layout mobile estático independente da orientação */
@@ -598,8 +671,22 @@ const ProcessOptimizationSection = () => {
               clear: both !important;
             }
 
+            /* FORÇAR layout mobile em QUALQUER orientação para dispositivos móveis reais */
+            .mobile-static-layout,
+            .mobile-cards-container,
+            .mobile-strategy-card {
+              position: relative !important;
+              transform: none !important;
+              animation: none !important;
+              transition: none !important;
+              will-change: auto !important;
+              backface-visibility: visible !important;
+              -webkit-backface-visibility: visible !important;
+            }
+
             /* MOBILE - PORTRAIT E LANDSCAPE IDÊNTICOS (sem diferenças) */
-            @media (max-width: 768px) {
+            @media (max-width: 768px), 
+                   (max-height: 500px and orientation: landscape) {
               #process-optimization {
                 overflow-x: hidden !important;
                 overflow-y: auto !important;
@@ -644,7 +731,8 @@ const ProcessOptimizationSection = () => {
             }
 
             /* FORÇAR desabilitação de animações/transforms em QUALQUER mobile */
-            @media (max-width: 768px) {
+            @media (max-width: 768px), 
+                   (max-height: 500px and orientation: landscape) {
               /* Desabilitar animações globalmente no mobile */
               #process-optimization *,
               .mobile-static-layout *,
@@ -689,7 +777,8 @@ const ProcessOptimizationSection = () => {
             }
 
             /* EXTRA: Garantir que hooks responsivos não afetem mobile */
-            @media (max-width: 768px) {
+            @media (max-width: 768px), 
+                   (max-height: 500px and orientation: landscape) {
               .mobile-static-layout [class*="scale-"],
               .mobile-static-layout [class*="translate-"],
               .mobile-static-layout [class*="rotate-"] {
@@ -702,7 +791,7 @@ const ProcessOptimizationSection = () => {
 
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto relative z-10">
         {/* Header with badge and line */}
-        <div className={`flex items-center gap-4 mb-4 sm:mb-6 lg:mb-8 w-full ${deviceInfo.isMobile ? '' : `transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}`}>
+        <div className={`flex items-center gap-4 mb-4 sm:mb-6 lg:mb-8 w-full ${isRealMobile ? '' : `transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}`}>
           <div className="flex items-center gap-4">
             <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-100/80 dark:bg-pulse-900/50 text-pulse-600 dark:text-pulse-300 border border-pulse-200/50 dark:border-pulse-700/50">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2 font-sans">03</span>
@@ -713,13 +802,13 @@ const ProcessOptimizationSection = () => {
         </div>
 
         {/* Main Title */}
-        <div className={`max-w-4xl mb-6 sm:mb-10 lg:mb-16 ${deviceInfo.isMobile ? '' : `transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}`} style={deviceInfo.isMobile ? {} : { animationDelay: '0.2s' }}>
+        <div className={`max-w-4xl mb-6 sm:mb-10 lg:mb-16 ${isRealMobile ? '' : `transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}`} style={isRealMobile ? {} : { animationDelay: '0.2s' }}>
           <h1 className="section-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-3 sm:mb-4 lg:mb-6 font-display">
             <span className="text-white">Inteligência Avançada,</span>
             <br />
             <span 
               className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-              style={deviceInfo.isMobile ? {} : {
+              style={isRealMobile ? {} : {
                 backgroundSize: '200% 200%',
                 animation: 'gradientFlow 3s ease-in-out infinite'
               }}
@@ -733,11 +822,12 @@ const ProcessOptimizationSection = () => {
           </p>
         </div>
 
-        {/* Renderizar layout baseado no dispositivo - SEMPRE mobile se largura <= 768px */}
+        {/* Renderizar layout baseado na detecção robusta de dispositivo móvel */}
         {(() => {
-          // Forçar layout mobile se largura <= 768px, independente da orientação
-          const isMobileLayout = deviceInfo.isMobile || window.innerWidth <= 768;
-          return isMobileLayout ? <MobileLayout /> : <DesktopLayout />;
+          // SEMPRE usar layout mobile se for detectado como dispositivo móvel real
+          const shouldUseMobileLayout = isRealMobile;
+          
+          return shouldUseMobileLayout ? <MobileLayout /> : <DesktopLayout />;
         })()}
       </div>
     </section>
