@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import ProcessOptimizationSection from "@/components/ProcessOptimizationSection";
 import PartnersSection from "@/components/PartnersSection";
 import CookieBanner from "@/components/CookieBanner";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { FloatingOrbs } from "@/components/ui/orbs";
 
 const Index = () => {
   // Otimizar smooth scrolling com throttling
@@ -46,6 +48,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative bg-black">
+      {/* 3 Orbs flutuantes no fundo de toda a página */}
+      <FloatingOrbs 
+        orbCount={20} 
+        sectionId="main-page" 
+        enableMouseFollow={true}
+      />
+      
       <Navbar />
       <main className="relative">
         <Hero />
@@ -61,6 +70,12 @@ const Index = () => {
       </main>
       <Footer />
       <CookieBanner />
+      
+      {/* Botão flutuante do WhatsApp */}
+      <WhatsAppButton 
+        phoneNumber="5562993140780" 
+        message="Olá! Gostaria de saber mais sobre as soluções de IA da Mind AI Tecnologia."
+      />
     </div>
   );
 };

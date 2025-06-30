@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { useDeviceDetection } from "@/hooks/use-mobile";
@@ -10,10 +10,22 @@ const Hero = () => {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   
   // Usar hooks de responsividade
   const deviceInfo = useDeviceDetection();
   const padding = useResponsivePadding('hero');
+  
+  // Configurações do vídeo responsivas
+  const videoSettings = useResponsiveValue({
+    'mobile-xs': { scale: 8, translateX: 50, translateY: 20 },
+    'mobile-sm': { scale: 9, translateX: 55, translateY: 21 },
+    'mobile-md': { scale: 10, translateX: 60, translateY: 22 },
+    'tablet-sm': { scale: 11, translateX: 62, translateY: 22 },
+    'tablet-md': { scale: 11.5, translateX: 63, translateY: 22.5 },
+    'tablet-lg': { scale: 12, translateX: 64, translateY: 23 },
+    'desktop': { scale: 12, translateX: 65, translateY: 23 }
+  }, { scale: 12, translateX: 65, translateY: 23 });
   
   // Tamanho do card responsivo - simplificado
   const cardSize = useResponsiveValue({
@@ -32,23 +44,59 @@ const Hero = () => {
       id="hero" 
       style={{ padding }}
     >
-      {/* Background estático otimizado */}
-      <div className="absolute inset-0 w-full h-full">
-        <div 
-          className="absolute inset-0"
-          style={{ 
-            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e1b4b 100%)',
+      {/* Efeitos de fundo */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-60 h-100 object-cover object-center"
+          onLoadedData={(e) => {
+            setVideoLoaded(true);
+            const video = e.target as HTMLVideoElement;
+            video.play().catch(console.error);
           }}
-        />
+          onCanPlay={(e) => {
+            const video = e.target as HTMLVideoElement;
+            video.play().catch(console.error);
+          }}
+          onError={(e) => {
+            console.warn("Vídeo de fundo não pôde ser carregado, usando fallback");
+            setVideoLoaded(false);
+            // Em caso de erro, usa uma cor de fundo sólida
+            const videoElement = e.target as HTMLVideoElement;
+            if (videoElement.parentElement) {
+              videoElement.style.display = 'none';
+              videoElement.parentElement.style.background = 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)';
+            }
+          }}
+          style={{ 
+            zIndex: 1,
+            transform: `scale(${videoSettings.scale}) translate(${videoSettings.translateX}px, ${videoSettings.translateY}px)`,
+            transformOrigin: 'center center',
+            opacity: 1,
+            filter: 'blur(0px) brightness(1) contrast(1) saturate(1)'
+          }}
+        >
+          <source src="/webm/Header-background-dark.webm" type="video/webm" />
+          <source src="https://cdn.jsdelivr.net/gh/DeckDev-RC/videosnovo/Header-Background-Dark.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Efeito de vidro fosco sutil */}
+        <div className="absolute inset-0 backdrop-blur-[10px] bg-black/5" style={{ zIndex: 2 }}></div>
+        
         {/* Gradiente de baixo para cima - preto para transparente */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" style={{ zIndex: 3 }}></div>
       </div>
 
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10" ref={containerRef}>
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
-                    <div 
-          className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/50 text-pulse-300 border border-pulse-700 mb-3 sm:mb-6 opacity-0 animate-fade-in" 
+            <div 
+              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/50 text-pulse-300 border border-pulse-700 mb-3 sm:mb-6 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.1s" }}
             >
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2 font-sans">01</span>
