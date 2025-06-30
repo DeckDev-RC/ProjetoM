@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-06-28T20:18:15.505719",
+  "phase": "2",
+  "bundle_analysis": {
+    "js_size": 478101,
+    "css_size": 109627,
+    "total_size": 587728,
+    "js_files": 11,
+    "css_files": 1
+  },
+  "lazy_loading": {
+    "components_with_lazy": 4,
+    "lazy_components_created": 3
+  },
+  "code_splitting": {
+    "lazy_imports": 6
+  },
+  "performance": {
+    "total_images": 0,
+    "total_image_size": 0,
+    "estimated_score": "80-90 (excelente)"
+  },
+  "optimizations_implemented": [
+    "LazyImage component",
+    "LazyVideo component",
+    "ResponsiveImage component",
+    "Lazy loading in Features component",
+    "Lazy loading in ProcessOptimizationSection",
+    "Video lazy loading in Hero and ImageShowcase",
+    "Code splitting mantido da Fase 1"
+  ]
+}

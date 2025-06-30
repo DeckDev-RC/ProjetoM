@@ -1,0 +1,36 @@
+{
+  "total_size": 1356403,
+  "gzipped_size": 843152,
+  "chunks_count": 11,
+  "optimization_suggestions": [
+    "🗜️ Arquivo 'animations-Do9ZUY9C.js' com baixa compressão (166.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'atendimento.webp' com baixa compressão (99.2%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Automatize-com-inteligencia.webp' com baixa compressão (98.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Conecte-tudo-precisao.webp' com baixa compressão (98.8%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Crescimento-monitoramento-total.webp' com baixa compressão (98.2%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Fluxos-estrategicos-adaptaveis.webp' com baixa compressão (97.8%). Verifique conteúdo.",
+    "🗜️ Arquivo 'logo.webp' com baixa compressão (97.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'processos.webp' com baixa compressão (99.9%). Verifique conteúdo.",
+    "🗜️ Arquivo 'vendas.webp' com baixa compressão (98.5%). Verifique conteúdo.",
+    "⚡ Nenhum chunk lazy detectado. Considere implementar lazy loading."
+  ],
+  "performance_impact": {
+    "critical_path_size": 382203,
+    "total_lazy_size": 0,
+    "chunk_distribution": {
+      "main": 1,
+      "vendor": 1,
+      "lazy": 0
+    },
+    "estimated_loading_times": {
+      "3G": 1.8224859237670898,
+      "4G": 0.32399749755859375,
+      "WiFi": 0.09719924926757813
+    },
+    "compression_efficiency": {
+      "ratio": 0.6216087696650626,
+      "savings": 513251,
+      "efficiency": "poor"
+    }
+  }
+}

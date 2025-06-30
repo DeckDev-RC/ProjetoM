@@ -1,0 +1,908 @@
+{
+  "navbar": {
+    "home": "Home",
+    "features": "Features",
+    "strategy": "Strategy",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Automate with Intelligence",
+    "title": "Transform your business with",
+    "titleGradient": "Intelligent Automation",
+    "description": "Personalized automation solutions that connect systems, optimize processes and drive results. Technology that works for you.",
+    "cta": "Get Started"
+  },
+  "features": {
+    "badge": "Features",
+    "title": "Some of Our Agents",
+    "titleGradient": "Ready for You",
+    "agents": {
+      "sales": {
+        "title": "Sales Agent",
+        "description": "Automates the entire sales process, from prospecting to closing. Identifies qualified leads, personalizes approaches and optimizes conversions.",
+        "features": [
+          "• Intelligent prospecting",
+          "• Automatic qualification",
+          "• Personalized follow-up",
+          "• Conversion analysis"
+        ]
+      },
+      "support": {
+        "title": "Support Agent",
+        "description": "Offers 24/7 support with accurate and contextualized responses. Resolves queries, processes requests and escalates complex cases.",
+        "features": [
+          "• 24/7 support",
+          "• Contextual responses",
+          "• Intelligent escalation",
+          "• Complete history"
+        ]
+      },
+      "process": {
+        "title": "Process Agent",
+        "description": "Manages internal processes and optimizes workflows. Automates repetitive tasks and monitors performance in real time.",
+        "features": [
+          "• Process automation",
+          "• Continuous monitoring",
+          "• Workflow optimization",
+          "• Detailed reports"
+        ]
+      }
+    },
+    "clickToFlip": "Click to go back"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Check out the",
+    "titleGradient": "frequently asked questions:",
+    "questions": [
+      {
+        "question": "How long does it take to implement a custom AI solution?",
+        "answer": "The time varies according to the complexity of the project, but on average we start delivering solutions from 21 business days after the initial alignment."
+      },
+      {
+        "question": "Does the solution integrate with the systems we already use?",
+        "answer": "Yes. Our solutions are developed to integrate with CRMs, ERPs, databases and tools like WhatsApp, Notion, Trello, Google Sheets and much more."
+      },
+      {
+        "question": "Do I need technical knowledge to use AI agents?",
+        "answer": "No. Our workflows are created to be completely intuitive. We provide simple training and support for your team to take advantage of AI's full potential without complications."
+      },
+      {
+        "question": "How does the implementation work?",
+        "answer": "We start with a detailed schedule, aligning all stages of the project. Implementation happens progressively, with partial deliveries that allow adjustments and improvements throughout the process. This way, the agent can be shaped according to your needs before final delivery."
+      },
+      {
+        "question": "How does it work after project delivery?",
+        "answer": "After delivery, we continue to monitor your project with technical monitoring and support whenever necessary. If questions, adjustments or any instability arise, our team will be available to help quickly and objectively."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's build your",
+    "titleGradient": "personalized AI solution.",
+    "description": "Fill in your details and talk to our specialists.",
+    "form": {
+      "name": "Name*",
+      "email": "Email*",
+      "phone": "Phone Number*",
+      "company": "Company Name",
+      "submit": "Request Proposal",
+      "submitting": "Sending..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "phoneRequired": "Phone is required",
+      "phoneInvalid": "Invalid phone number"
+    },
+    "toast": {
+      "title": "Proposal sent!",
+      "description": "We will contact you soon.",
+      "errorTitle": "Error sending",
+      "errorDescription": "Please correct the highlighted fields and try again."
+    }
+  },
+  "footer": {
+    "cta": "Let's solve problems together?",
+    "ctaButton": "Contact Us",
+    "menu": "Menu",
+    "legal": "Legal",
+    "contact": "Contact",
+    "backToTop": "Back to top",
+    "copyright": "© 2025 Mind AI Technology - All Rights Reserved.",
+    "links": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies"
+    }
+  },
+  "terms": {
+    "badge": "Legal Terms",
+    "title": "Terms of",
+    "titleGradient": "Service",
+    "lastUpdated": "Last updated: January 25, 2025",
+    "description": "These terms govern the use of Mind AI Technology's artificial intelligence services. By contracting our services, you agree to all the terms described below.",
+    "index": "Index",
+    "backButton": "Back",
+    "sections": {
+      "acceptance": "Acceptance of Terms",
+      "definitions": "Definitions",
+      "services": "Service Description",
+      "clientResponsibilities": "Client Responsibilities",
+      "ourResponsibilities": "Our Responsibilities",
+      "intellectualProperty": "Intellectual Property",
+      "dataProtection": "Data Protection",
+      "limitations": "Limitations and Warranties",
+      "payments": "Payments",
+      "termination": "Termination",
+      "general": "General Provisions"
+    },
+    "content": {
+      "acceptance": {
+        "title": "Acceptance of Terms",
+        "content": [
+          "By contracting the services of Mind AI Technology, a private legal entity, registered under CNPJ [CNPJ], headquartered at R. S-1, Q. 153 - L. 25 - St. Bueno, Goiânia - GO, 74230-220, you (\"Client\") expressly agree to these Terms of Service.",
+          "These terms constitute a binding legal agreement between you and Mind AI Technology. If you do not agree with any part of these terms, you should not contract our services.",
+          "Contracting may occur through signed commercial proposal, electronic acceptance, or beginning of service provision after mutual approval of the project scope."
+        ]
+      },
+      "definitions": {
+        "title": "Definitions",
+        "items": {
+          "aiServices": {
+            "title": "AI Services",
+            "description": "Development, implementation and maintenance of personalized artificial intelligence solutions, including intelligent agents, process automation and integration with existing systems."
+          },
+          "intelligentAgents": {
+            "title": "Intelligent Agents",
+            "description": "AI systems capable of executing specific tasks autonomously, such as customer service, sales, process management and data analysis."
+          },
+          "clientData": {
+            "title": "Client Data",
+            "description": "All information, data, files, databases and content provided by the Client for development and operation of AI services."
+          },
+          "customSolution": {
+            "title": "Custom Solution",
+            "description": "AI system developed specifically to meet the unique needs and processes of the Client."
+          }
+        }
+      },
+      "services": {
+        "title": "Service Description",
+        "description": "Mind AI Technology offers the following main services:",
+        "items": {
+          "development": {
+            "title": "Custom AI Development",
+            "description": "Creation of tailor-made intelligent agents to automate specific business processes."
+          },
+          "integration": {
+            "title": "System Integration",
+            "description": "Connection of AI agents with CRMs, ERPs, databases and existing tools."
+          },
+          "automation": {
+            "title": "Process Automation",
+            "description": "Implementation of automated workflows for sales, customer service, management and data analysis."
+          },
+          "support": {
+            "title": "Support and Maintenance",
+            "description": "Continuous monitoring, adjustments, improvements and specialized technical support."
+          }
+        }
+      },
+      "clientResponsibilities": {
+        "title": "Client Responsibilities",
+        "description": "The Client commits to:",
+        "items": [
+          "Provide accurate and complete information about their processes and needs",
+          "Make available access to systems and data necessary for development",
+          "Actively collaborate during the development and testing process",
+          "Maintain confidentiality of shared technical information",
+          "Make payments according to agreed schedule",
+          "Use services in a legal and ethical manner"
+        ]
+      },
+      "ourResponsibilities": {
+        "title": "Our Responsibilities",
+        "description": "Mind AI Technology commits to:",
+        "items": [
+          "Develop AI solutions according to agreed specifications",
+          "Deliver projects within established deadlines",
+          "Provide adequate training and documentation",
+          "Offer technical support during the agreed period",
+          "Maintain absolute confidentiality about Client data and information",
+          "Implement adequate security measures for data protection"
+        ]
+      },
+      "intellectualProperty": {
+        "title": "Intellectual Property",
+        "items": {
+          "codeAndTechnology": {
+            "title": "Code and Technology",
+            "description": "The source code, algorithms, AI models and technologies developed by Mind AI remain the exclusive property of the company, being licensed for Client use according to agreed scope."
+          },
+          "clientData": {
+            "title": "Client Data",
+            "description": "All data provided by the Client remains their exclusive property. Mind AI will not use this data for other purposes beyond providing contracted services."
+          },
+          "derivedKnowledge": {
+            "title": "Derived Knowledge",
+            "description": "Insights, methodologies and general knowledge developed during service provision may be used by Mind AI in future projects, provided they do not identify or compromise specific Client information."
+          }
+        }
+      },
+      "dataProtection": {
+        "title": "Data Protection and Privacy",
+        "lgpdCompliance": "This section is in compliance with the General Data Protection Law (LGPD - Law 13.709/2018)",
+        "items": {
+          "dataProcessing": {
+            "title": "Data Processing",
+            "description": "Mind AI acts as a personal data processor, processing information exclusively for providing contracted services, under instructions from the Client (controller)."
+          },
+          "securityMeasures": {
+            "title": "Security Measures",
+            "items": [
+              "Data encryption in transit and at rest",
+              "Strict access controls",
+              "Continuous security monitoring",
+              "Data backup and recovery",
+              "Team training in data protection"
+            ]
+          },
+          "dataSubjectRights": {
+            "title": "Data Subject Rights",
+            "description": "We guarantee the exercise of rights provided for in the LGPD, including access, correction, anonymization, blocking, deletion and portability of personal data."
+          }
+        }
+      },
+      "limitations": {
+        "title": "Limitations and Warranties",
+        "warranties": {
+          "title": "Warranties Offered",
+          "items": [
+            "Functioning according to agreed specifications",
+            "Correction of bugs identified during warranty period",
+            "Technical support during established period",
+            "Compliance with security standards"
+          ]
+        },
+        "limitations": {
+          "title": "Liability Limitations",
+          "description": "Mind AI is not responsible for:",
+          "items": [
+            "Decisions made based on AI system results",
+            "Damages arising from inappropriate or unauthorized use",
+            "Failures in integrated third-party systems",
+            "Interruptions due to force majeure reasons",
+            "Lost profits or indirect damages"
+          ],
+          "limitationNote": "Mind AI's total liability is limited to the total amount paid by the Client in the specific project where the problem occurred."
+        }
+      },
+      "payments": {
+        "title": "Payment Terms",
+        "items": {
+          "valuesAndSchedule": {
+            "title": "Values and Schedule",
+            "description": "Values are established in the specific commercial proposal for each project, with payment schedule linked to deliveries and development milestones."
+          },
+          "paymentMethods": {
+            "title": "Payment Methods",
+            "items": [
+              "Bank transfer (PIX, TED, DOC)",
+              "Bank slip",
+              "Other forms agreed in the proposal"
+            ]
+          },
+          "latePayment": {
+            "title": "Late Payment",
+            "description": "Payment delay exceeding 15 days may result in service suspension and charging of 1% monthly interest, plus a 2% fine on the overdue amount."
+          }
+        }
+      },
+      "termination": {
+        "title": "Contract Termination",
+        "items": {
+          "mutualAgreement": {
+            "title": "Termination by Mutual Agreement",
+            "description": "The contract may be terminated at any time by agreement between the parties, with proportional financial settlement for services already provided."
+          },
+          "breach": {
+            "title": "Termination for Breach",
+            "description": "Either party may terminate the contract in case of material breach of obligations, after notification and 15-day period for regularization."
+          },
+          "effects": {
+            "title": "Effects of Termination",
+            "items": [
+              "Immediate cessation of services under development",
+              "Delivery of materials and codes already developed",
+              "Proportional payment for services provided",
+              "Return of data and confidential information",
+              "Maintenance of confidentiality obligations"
+            ]
+          }
+        }
+      },
+      "general": {
+        "title": "General Provisions",
+        "items": {
+          "applicableLaw": {
+            "title": "Applicable Law",
+            "description": "This contract is governed by the laws of the Federative Republic of Brazil, especially the Civil Code, Consumer Protection Code (when applicable) and General Data Protection Law."
+          },
+          "competentForum": {
+            "title": "Competent Forum",
+            "description": "The forum of [City/State] is elected to resolve any controversies arising from this contract, with the parties waiving any other."
+          },
+          "modifications": {
+            "title": "Modifications",
+            "description": "These terms may be updated periodically. Active clients will be notified 30 days in advance of significant changes."
+          },
+          "contact": {
+            "title": "Contact",
+            "description": "For questions about these terms, contact us through the official channels available on our website or by email: contato@mindtecnologia-ai.com.br"
+          }
+        }
+      },
+      "footer": {
+        "title": "Mind AI Technology - Terms of Service",
+        "lastUpdated": "Last updated: January 25, 2025"
+      }
+    }
+  },
+  "privacy": {
+    "badge": "Data Protection",
+    "title": "Privacy",
+    "titleGradient": "Policy",
+    "lastUpdated": "Last updated: January 25, 2025",
+    "description": "This policy describes how Mind AI Technology collects, uses, stores and protects your personal data, in compliance with the General Data Protection Law (LGPD).",
+    "index": "Index",
+    "backButton": "Back",
+    "dataProtectionNote": "Your data is processed with the highest level of security and transparency.",
+    "sections": {
+      "generalInfo": "General Information",
+      "dataCollected": "Data Collected",
+      "purpose": "Processing Purpose",
+      "legalBasis": "Legal Basis",
+      "dataSharing": "Data Sharing",
+      "security": "Security and Protection",
+      "retention": "Data Retention",
+      "userRights": "Data Subject Rights",
+      "cookies": "Cookies and Technologies",
+      "policyChanges": "Policy Changes",
+      "contactDpo": "DPO Contact"
+    },
+    "content": {
+      "generalInfo": {
+        "title": "General Information",
+        "content": [
+          "Mind AI Technology, a private legal entity, registered under CNPJ [CNPJ], headquartered at R. S-1, Q. 153 - L. 25 - St. Bueno, Goiânia - GO, 74230-220, is committed to protecting the privacy and personal data of its clients, users and partners.",
+          "This Privacy Policy describes how we collect, use, store, share and protect your personal information, in compliance with the General Data Protection Law (LGPD - Law 13.709/2018) and other applicable regulations."
+        ]
+      },
+      "dataCollected": {
+        "title": "Data Collected",
+        "description": "We collect different types of data depending on your interaction with our services:",
+        "categories": {
+          "identification": {
+            "title": "Identification Data",
+            "items": [
+              "Full name and corporate name",
+              "CPF/CNPJ",
+              "Email address",
+              "Contact phone",
+              "Physical address"
+            ]
+          },
+          "navigation": {
+            "title": "Navigation Data",
+            "items": [
+              "IP address",
+              "Browser information",
+              "Pages visited",
+              "Time spent",
+              "Cookies and similar technologies"
+            ]
+          },
+          "commercial": {
+            "title": "Commercial Data",
+            "items": [
+              "Contracting history",
+              "Service preferences",
+              "Billing data",
+              "Commercial communications"
+            ]
+          },
+          "technical": {
+            "title": "Technical Data",
+            "items": [
+              "System logs",
+              "Performance data",
+              "Integration information",
+              "Service usage data"
+            ]
+          }
+        }
+      },
+      "purpose": {
+        "title": "Processing Purpose",
+        "description": "Your personal data is processed for the following specific purposes:",
+        "purposes": {
+          "serviceProvision": {
+            "title": "Service Provision",
+            "description": "Development, implementation and maintenance of personalized AI solutions."
+          },
+          "communication": {
+            "title": "Communication",
+            "description": "Sending information about services, technical updates and customer support."
+          },
+          "improvement": {
+            "title": "Service Improvement",
+            "description": "Usage analysis for improvement and development of new features."
+          },
+          "legal": {
+            "title": "Legal Compliance",
+            "description": "Meeting legal, regulatory and contractual obligations."
+          },
+          "security": {
+            "title": "Security",
+            "description": "Fraud prevention, system protection and information security."
+          }
+        }
+      },
+      "legalBasis": {
+        "title": "Legal Basis for Processing",
+        "description": "The processing of your personal data is based on the following legal bases provided for in the LGPD:",
+        "bases": {
+          "contract": {
+            "title": "Contract Execution",
+            "description": "For providing contracted services and fulfilling contractual obligations."
+          },
+          "consent": {
+            "title": "Consent",
+            "description": "When you expressly authorize processing for specific purposes."
+          },
+          "legalObligation": {
+            "title": "Legal Obligation",
+            "description": "To comply with applicable legal and regulatory obligations."
+          },
+          "legitimateInterest": {
+            "title": "Legitimate Interest",
+            "description": "For service improvement, security and fraud prevention."
+          }
+        }
+      },
+      "dataSharing": {
+        "title": "Data Sharing",
+        "description": "Your personal data may be shared only in the following situations:",
+        "situations": {
+          "serviceProviders": {
+            "title": "Service Providers",
+            "description": "With technical partners who assist in service provision, always under strict confidentiality contracts."
+          },
+          "authorities": {
+            "title": "Competent Authorities",
+            "description": "When required by law, court order or by regulatory authorities."
+          },
+          "consent": {
+            "title": "Express Consent",
+            "description": "In specific situations where you expressly authorize sharing."
+          }
+        },
+        "noSaleNote": "We never sell, rent or commercialize your personal data."
+      },
+      "security": {
+        "title": "Security and Protection",
+        "description": "We implement rigorous technical and organizational measures to protect your data:",
+        "measures": {
+          "technical": {
+            "title": "Technical Measures",
+            "items": [
+              "Data encryption in transit and at rest",
+              "Role-based access controls",
+              "Continuous security monitoring",
+              "Secure and redundant backups",
+              "Regular penetration testing"
+            ]
+          },
+          "organizational": {
+            "title": "Organizational Measures",
+            "items": [
+              "Regular team training",
+              "Internal security policies",
+              "Confidentiality agreements",
+              "Process auditing",
+              "Incident response plan"
+            ]
+          }
+        }
+      },
+      "retention": {
+        "title": "Data Retention",
+        "description": "We keep your personal data only for the time necessary for specific purposes:",
+        "periods": {
+          "serviceProvision": {
+            "title": "During Service Provision",
+            "description": "While the contractual relationship and service provision lasts."
+          },
+          "legalPeriod": {
+            "title": "Legal Period",
+            "description": "As required by legal obligations (e.g.: tax data for 5 years)."
+          },
+          "secureElimination": {
+            "title": "Secure Elimination",
+            "description": "After the retention period, data is eliminated securely and irreversibly."
+          }
+        }
+      },
+      "userRights": {
+        "title": "Your Rights as Data Subject",
+        "description": "You have the following rights regarding your personal data:",
+        "rights": {
+          "access": {
+            "title": "Access",
+            "description": "Confirm the existence and obtain access to your personal data."
+          },
+          "correction": {
+            "title": "Correction",
+            "description": "Request correction of incomplete, inaccurate or outdated data."
+          },
+          "deletion": {
+            "title": "Deletion",
+            "description": "Request deletion of unnecessary, excessive or non-compliant processed data."
+          },
+          "portability": {
+            "title": "Portability",
+            "description": "Request data portability to another service provider."
+          },
+          "opposition": {
+            "title": "Opposition",
+            "description": "Oppose processing based on legitimate interest."
+          },
+          "consentRevocation": {
+            "title": "Consent Revocation",
+            "description": "Revoke consent for specific processing."
+          }
+        },
+        "exerciseNote": "To exercise your rights, contact us via email: contato@mindtecnologia-ai.com.br"
+      },
+      "cookies": {
+        "title": "Cookies and Similar Technologies",
+        "description": "We use cookies and similar technologies to improve your experience:",
+        "types": {
+          "essential": {
+            "title": "Essential Cookies",
+            "description": "Necessary for basic site and service functionality."
+          },
+          "performance": {
+            "title": "Performance Cookies",
+            "description": "Collect information about how you use our site for improvements."
+          },
+          "functionality": {
+            "title": "Functionality Cookies",
+            "description": "Allow personalizing your experience and remembering your preferences."
+          }
+        },
+        "managementNote": "You can manage your cookie preferences through your browser settings."
+      },
+      "policyChanges": {
+        "title": "Changes to this Policy",
+        "items": {
+          "updates": {
+            "title": "Updates",
+            "description": "This Privacy Policy may be updated periodically to reflect changes in our services, data practices or legal requirements."
+          },
+          "notification": {
+            "title": "Notification",
+            "description": "We will notify about significant changes via email or notice on our website, with a minimum of 30 days advance notice."
+          },
+          "currentVersion": {
+            "title": "Current Version",
+            "description": "The date of last update is always indicated at the beginning of this policy. We recommend periodic review of this document."
+          }
+        }
+      },
+      "contactDpo": {
+        "title": "Data Protection Officer (DPO) Contact",
+        "description": "For questions related to data protection, exercise of rights or clarifications about this policy, contact our Data Protection Officer:",
+        "contact": {
+          "title": "Data Protection Officer (DPO)",
+          "email": "contato@mindtecnologia-ai.com.br",
+          "phone": "+55 62 99314-0780",
+          "address": "R. S-1, Q. 153 - L. 25 - St. Bueno, Goiânia - GO, 74230-220",
+          "hours": "Monday to Friday, 9am to 6pm"
+        },
+        "responseNote": "We commit to responding to your requests within 15 business days."
+      }
+    }
+  },
+  "cookies": {
+    "badge": "Digital Transparency",
+    "title": "Cookie",
+    "titleGradient": "Policy",
+    "lastUpdated": "Last updated: January 25, 2025",
+    "description": "This policy explains how we use cookies and similar technologies on our website, ensuring transparency about collection and use of browsing data.",
+    "index": "Index",
+    "backButton": "Back",
+    "sections": {
+      "whatAreCookies": "What are Cookies",
+      "typesOfCookies": "Types of Cookies",
+      "cookiesWeUse": "Cookies We Use",
+      "thirdPartyCookies": "Third-Party Cookies",
+      "cookieManagement": "Manage Cookies",
+      "legalBasis": "Legal Basis",
+      "dataRetention": "Data Retention",
+      "policyUpdates": "Updates"
+    },
+    "content": {
+      "whatAreCookies": {
+        "title": "What are Cookies",
+        "content": [
+          "Cookies are small text files stored on your device (computer, tablet or smartphone) when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.",
+          "Cookies allow a website to recognize your device and store some information about your preferences or previous actions. This improves your browsing experience, making it faster and more personalized."
+        ],
+        "securityNote": "Cookies cannot access other files on your device or install viruses."
+      },
+      "typesOfCookies": {
+        "title": "Types of Cookies",
+        "description": "We use different types of cookies, each with a specific purpose:",
+        "types": {
+          "essential": {
+            "title": "Essential Cookies",
+            "description": "Necessary for basic website functionality. Without them, some features would not work.",
+            "features": [
+              "User session maintenance",
+              "Security settings",
+              "Language preferences",
+              "Form states"
+            ]
+          },
+          "performance": {
+            "title": "Performance Cookies",
+            "description": "Collect information about how you use the website to improve its performance.",
+            "features": [
+              "Most visited pages",
+              "Loading time",
+              "Errors found",
+              "Navigation patterns"
+            ]
+          },
+          "functionality": {
+            "title": "Functionality Cookies",
+            "description": "Allow the website to remember your choices and provide enhanced features.",
+            "features": [
+              "Theme preferences",
+              "Accessibility settings",
+              "Geographic location",
+              "Browsing history"
+            ]
+          },
+          "marketing": {
+            "title": "Marketing Cookies",
+            "description": "Used to make advertising messages more relevant to you.",
+            "features": [
+              "Conversion tracking",
+              "Ad personalization",
+              "Campaign analysis",
+              "Remarketing"
+            ]
+          }
+        }
+      },
+      "cookiesWeUse": {
+        "title": "Cookies We Use",
+        "description": "Specific details of cookies used on our website:",
+        "firstParty": {
+          "title": "First-Party Cookies",
+          "tableHeaders": {
+            "name": "Name",
+            "purpose": "Purpose",
+            "duration": "Duration"
+          },
+          "cookies": [
+            {
+              "name": "session_id",
+              "purpose": "Session identification",
+              "duration": "Session"
+            },
+            {
+              "name": "user_preferences",
+              "purpose": "User preferences",
+              "duration": "30 days"
+            },
+            {
+              "name": "cookie_consent",
+              "purpose": "Cookie consent",
+              "duration": "1 year"
+            },
+            {
+              "name": "theme_mode",
+              "purpose": "Dark/light mode",
+              "duration": "90 days"
+            }
+          ]
+        }
+      },
+      "thirdPartyCookies": {
+        "title": "Third-Party Cookies",
+        "description": "We also use cookies from third-party services for specific functionalities:",
+        "services": {
+          "googleAnalytics": {
+            "title": "Google Analytics",
+            "description": "For traffic analysis and user behavior.",
+            "cookies": "_ga, _ga_*, _gid, _gat_gtag_*"
+          },
+          "googleTagManager": {
+            "title": "Google Tag Manager",
+            "description": "For tag and script management.",
+            "cookies": "_gtm, _gtag"
+          },
+          "hotjar": {
+            "title": "Hotjar",
+            "description": "For user experience analysis and heat maps.",
+            "cookies": "_hjid, _hjSession*, _hjIncludedInPageviewSample"
+          }
+        }
+      },
+      "cookieManagement": {
+        "title": "How to Manage Cookies",
+        "description": "You have full control over cookies. You can manage them in several ways:",
+        "methods": {
+          "browserSettings": {
+            "title": "Browser Settings",
+            "description": "All browsers allow managing cookies through their settings:",
+            "browsers": {
+              "chrome": {
+                "name": "Chrome",
+                "path": "Settings → Privacy and Security → Cookies"
+              },
+              "firefox": {
+                "name": "Firefox",
+                "path": "Preferences → Privacy and Security → Cookies"
+              },
+              "safari": {
+                "name": "Safari",
+                "path": "Preferences → Privacy → Cookies"
+              },
+              "edge": {
+                "name": "Edge",
+                "path": "Settings → Cookies and Site Permissions"
+              }
+            }
+          },
+          "consentBanner": {
+            "title": "Consent Banner",
+            "description": "Use our cookie banner to accept or reject specific cookie categories. Your preferences will be remembered for future visits."
+          },
+          "thirdPartyOptOut": {
+            "title": "Third-Party Opt-out",
+            "links": [
+              {
+                "name": "Google Analytics Opt-out",
+                "url": "https://tools.google.com/dlpage/gaoptout"
+              },
+              {
+                "name": "Hotjar Opt-out",
+                "url": "https://www.hotjar.com/legal/compliance/opt-out"
+              }
+            ]
+          }
+        }
+      },
+      "legalBasis": {
+        "title": "Legal Basis",
+        "description": "The use of cookies is based on the following legal bases:",
+        "bases": {
+          "consent": {
+            "title": "Consent (Art. 7, I of LGPD)",
+            "description": "For non-essential cookies, we obtain your explicit consent through the cookie banner."
+          },
+          "legitimateInterest": {
+            "title": "Legitimate Interest (Art. 7, IX of LGPD)",
+            "description": "For essential cookies necessary for website operation and service improvement."
+          },
+          "contractExecution": {
+            "title": "Contract Execution (Art. 7, V of LGPD)",
+            "description": "For cookies necessary for providing contracted services."
+          }
+        }
+      },
+      "dataRetention": {
+        "title": "Data Retention",
+        "description": "Data collected through cookies is kept for the following periods:",
+        "periods": {
+          "sessionCookies": {
+            "title": "Session Cookies",
+            "description": "Automatically deleted when you close the browser."
+          },
+          "persistentCookies": {
+            "title": "Persistent Cookies",
+            "description": "Kept for the period specified in each cookie (from 30 days to 2 years)."
+          },
+          "analyticsData": {
+            "title": "Analytics Data",
+            "description": "Aggregated and anonymized data may be kept for up to 26 months for trend analysis."
+          }
+        }
+      },
+      "policyUpdates": {
+        "title": "Updates to this Policy",
+        "content": [
+          "This Cookie Policy may be updated periodically to reflect changes in our practices or for operational, legal or regulatory reasons.",
+          "When we make significant changes, we will notify you through the cookie banner or other appropriate means before the changes take effect."
+        ],
+        "reviewNote": "We recommend that you review this policy periodically to stay informed about how we use cookies."
+      },
+      "contact": {
+        "title": "Questions about Cookies?",
+        "description": "If you have questions about our Cookie Policy or want to exercise your rights, contact us.",
+        "email": "contato@mindtecnologia-ai.com.br",
+        "contactLink": "Contact Us"
+      }
+    }
+  },
+  "cookieBanner": {
+    "title": "We use cookies",
+    "description": "We use cookies to improve your experience on our website, personalize content and analyze our traffic.",
+    "acceptAll": "Accept All",
+    "rejectAll": "Reject All",
+    "settings": "Settings",
+    "learnMore": "Learn more"
+  },
+  "languageSwitch": {
+    "portuguese": "Português",
+    "english": "English"
+  },
+  "showcase": {
+    "badge": "Showcase",
+    "title": "Agents that Adapt",
+    "titleGradient": "to your Business",
+    "description": "Beyond ready-made models, we create personalized intelligent agents, designed to precisely meet your company's needs.",
+    "cardTitle": "Boost your Business with our",
+    "cardTitleGradient": "Intelligent Agents",
+    "cardDescription": "Artificial Intelligence is no longer a thing of the future. Today, it's within your reach, ready to automate tasks, optimize processes and free up your time for what really matters.",
+    "tags": {
+      "customAI": "Custom AI",
+      "smartAutomation": "Smart Automation",
+      "customSolutions": "Custom Solutions"
+    }
+  },
+  "partners": {
+    "badge": "Trusted Partners"
+  },
+  "strategy": {
+    "badge": "Strategy",
+    "title": "Advanced Intelligence,",
+    "titleGradient": "Intuitive Automation",
+    "description": "Inside what makes our AI so efficient",
+    "cards": {
+      "automation": {
+        "title": "Automate with Intelligence",
+        "description": "Reduce manual tasks with **automations that learn** from your processes and **make decisions** in real time."
+      },
+      "integration": {
+        "title": "Connect Everything with Precision",
+        "description": "We integrate your **systems, APIs and tools** to create a **unified ecosystem**, efficient and intelligent."
+      },
+      "workflows": {
+        "title": "Strategic and Adaptable Workflows",
+        "description": "We create **AI workflows** that adapt to your business reality — **from simple to complex**, everything under control."
+      },
+      "monitoring": {
+        "title": "Growth with Total Monitoring",
+        "description": "Our solutions **scale with your business** and offer **traceability and adjustments** in real time, always with performance."
+      }
+    }
+  },
+  "common": {
+    "backToTop": "Back to top"
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "backToHome": "Back to Home"
+  }
+} 

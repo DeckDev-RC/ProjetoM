@@ -1,0 +1,8 @@
+{
+  "input_file": "public\\0617.mp4",
+  "output_file": "public\\webm\\0617.webm",
+  "input_size_mb": 3.25,
+  "output_size_mb": 4.64,
+  "compression_ratio": -42.9,
+  "status": "success"
+}

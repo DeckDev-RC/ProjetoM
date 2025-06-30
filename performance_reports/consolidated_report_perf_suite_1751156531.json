@@ -1,0 +1,129 @@
+{
+  "session_id": "perf_suite_1751156531",
+  "timestamp": "2025-06-28T21:37:08.548742",
+  "configuration": {
+    "run_bundle_analysis": true,
+    "run_memory_profiling": true,
+    "run_stress_testing": true,
+    "run_performance_suite": false,
+    "memory_duration_minutes": 2,
+    "stress_max_users": 15,
+    "stress_duration_minutes": 2,
+    "performance_network_tests": true,
+    "base_url": "http://localhost:8080",
+    "output_dir": "performance_reports",
+    "generate_dashboard": true,
+    "send_alerts": true
+  },
+  "test_results": [
+    {
+      "test_name": "Bundle Analysis",
+      "status": "success",
+      "start_time": "2025-06-28T21:22:11.445037",
+      "end_time": "2025-06-28T21:22:11.611512",
+      "duration_seconds": 0.166475,
+      "data": {
+        "total_size": 1356403,
+        "gzipped_size": 843152,
+        "chunks_count": 11,
+        "optimization_suggestions": [
+          "🗜️ Arquivo 'animations-Do9ZUY9C.js' com baixa compressão (166.7%). Verifique conteúdo.",
+          "🗜️ Arquivo 'atendimento.webp' com baixa compressão (99.2%). Verifique conteúdo.",
+          "🗜️ Arquivo 'Automatize-com-inteligencia.webp' com baixa compressão (98.7%). Verifique conteúdo.",
+          "🗜️ Arquivo 'Conecte-tudo-precisao.webp' com baixa compressão (98.8%). Verifique conteúdo.",
+          "🗜️ Arquivo 'Crescimento-monitoramento-total.webp' com baixa compressão (98.2%). Verifique conteúdo.",
+          "🗜️ Arquivo 'Fluxos-estrategicos-adaptaveis.webp' com baixa compressão (97.8%). Verifique conteúdo.",
+          "🗜️ Arquivo 'logo.webp' com baixa compressão (97.7%). Verifique conteúdo.",
+          "🗜️ Arquivo 'processos.webp' com baixa compressão (99.9%). Verifique conteúdo.",
+          "🗜️ Arquivo 'vendas.webp' com baixa compressão (98.5%). Verifique conteúdo.",
+          "⚡ Nenhum chunk lazy detectado. Considere implementar lazy loading."
+        ],
+        "performance_impact": {
+          "critical_path_size": 382203,
+          "total_lazy_size": 0,
+          "chunk_distribution": {
+            "main": 1,
+            "vendor": 1,
+            "lazy": 0
+          },
+          "estimated_loading_times": {
+            "3G": 1.8224859237670898,
+            "4G": 0.32399749755859375,
+            "WiFi": 0.09719924926757813
+          },
+          "compression_efficiency": {
+            "ratio": 0.6216087696650626,
+            "savings": 513251,
+            "efficiency": "poor"
+          }
+        }
+      },
+      "error_message": null
+    },
+    {
+      "test_name": "Memory Profiling",
+      "status": "success",
+      "start_time": "2025-06-28T21:22:11.612764",
+      "end_time": "2025-06-28T21:24:23.478525",
+      "duration_seconds": 131.865761,
+      "data": {
+        "peak_memory": 19127640,
+        "average_memory": 18120716,
+        "memory_growth_rate": 495545.0,
+        "detected_leaks": 0,
+        "recommendations": [
+          "📊 Implementar monitoramento contínuo",
+          "🧪 Adicionar testes de memory leak",
+          "⚡ Otimizar re-renders desnecessários"
+        ]
+      },
+      "error_message": null
+    },
+    {
+      "test_name": "Performance Suite",
+      "status": "skipped",
+      "start_time": "2025-06-28T21:24:23.479316",
+      "end_time": "2025-06-28T21:24:23.479346",
+      "duration_seconds": 0,
+      "data": null,
+      "error_message": null
+    },
+    {
+      "test_name": "Stress Testing",
+      "status": "failed",
+      "start_time": "2025-06-28T21:24:23.481616",
+      "end_time": "2025-06-28T21:37:08.545178",
+      "duration_seconds": 765.063562,
+      "data": null,
+      "error_message": "Timeout após 765.1s"
+    }
+  ],
+  "overall_performance_score": 0.0,
+  "critical_issues": [
+    "📦 Bundle muito grande (>1MB)",
+    "❌ Stress Testing falhou: Timeout após 765.1s"
+  ],
+  "warnings": [
+    "📦 Bundle grande (>500KB) - considere otimizações"
+  ],
+  "recommendations": [
+    "🗜️ Arquivo 'Conecte-tudo-precisao.webp' com baixa compressão (98.8%). Verifique conteúdo.",
+    "📈 Definir métricas e SLAs baseados nos resultados",
+    "⚡ Nenhum chunk lazy detectado. Considere implementar lazy loading.",
+    "🗜️ Arquivo 'Crescimento-monitoramento-total.webp' com baixa compressão (98.2%). Verifique conteúdo.",
+    "🗜️ Arquivo 'processos.webp' com baixa compressão (99.9%). Verifique conteúdo.",
+    "📊 Implementar monitoramento contínuo",
+    "🔄 Executar testes de regressão regularmente",
+    "🗜️ Arquivo 'vendas.webp' com baixa compressão (98.5%). Verifique conteúdo.",
+    "🗜️ Arquivo 'atendimento.webp' com baixa compressão (99.2%). Verifique conteúdo.",
+    "⚡ Otimizar re-renders desnecessários",
+    "🧪 Adicionar testes de memory leak",
+    "📊 Implementar monitoramento contínuo de performance",
+    "🗜️ Arquivo 'Automatize-com-inteligencia.webp' com baixa compressão (98.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'logo.webp' com baixa compressão (97.7%). Verifique conteúdo.",
+    "🗜️ Arquivo 'Fluxos-estrategicos-adaptaveis.webp' com baixa compressão (97.8%). Verifique conteúdo.",
+    "🗜️ Arquivo 'animations-Do9ZUY9C.js' com baixa compressão (166.7%). Verifique conteúdo."
+  ],
+  "overall_status": "critical",
+  "historical_comparison": null
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-06-28T15:10:52.617528",
+  "phase": "2",
+  "bundle_analysis": null,
+  "lazy_loading": {
+    "components_with_lazy": 0,
+    "lazy_components_created": 0
+  },
+  "code_splitting": {
+    "lazy_imports": 0
+  },
+  "performance": {
+    "total_images": 0,
+    "total_image_size": 0,
+    "estimated_score": "80-90 (excelente)"
+  },
+  "optimizations_implemented": [
+    "LazyImage component",
+    "LazyVideo component",
+    "ResponsiveImage component",
+    "Lazy loading in Features component",
+    "Lazy loading in ProcessOptimizationSection",
+    "Video lazy loading in Hero and ImageShowcase",
+    "Code splitting mantido da Fase 1"
+  ]
+}

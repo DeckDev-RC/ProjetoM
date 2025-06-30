@@ -1,0 +1,311 @@
+/* Preload critical fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+/* Lazy load decorative font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap') layer(decorative);
+
+@font-face {
+  font-family: 'Brockmann';
+  src: url('/brockmann-medium-webfont.ttf') format('truetype'),
+       url('/brockmann-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 195 100% 59%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 248 45% 53%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 22%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 262 54% 44%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 195 100% 59%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 248 45% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 195 100% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    background: #000000 !important;
+    min-height: 100vh;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .feature-card {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/50 text-pulse-300 border border-pulse-700;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-white;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-gray-400 mt-4 max-w-3xl;
+  }
+
+  .glass-card {
+    @apply rounded-2xl transition-all duration-300;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .primary-button {
+    @apply bg-pulse-600 hover:bg-pulse-700 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .secondary-button {
+    @apply bg-transparent border border-gray-700 hover:border-pulse-400 text-gray-200 hover:text-pulse-400 font-medium py-3 px-6 rounded-full transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply relative text-gray-200 hover:text-pulse-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-pulse-400 after:transition-all hover:after:w-full;
+  }
+}
+
+/* Animações essenciais otimizadas */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação otimizada para scroll - usando transform3d para GPU acceleration */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Animação de gradiente otimizada */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Stagger animations para elementos */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Parallax effect */
+.parallax {
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.1s ease-out;
+}
+
+/* Estilos para a animação de flip dos cards */
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ajustes para garantir compatibilidade com diferentes navegadores */
+@supports (-webkit-perspective: 1px) {
+  .transform-style-preserve-3d {
+    -webkit-transform-style: preserve-3d;
+  }
+}
+
+@supports (-moz-perspective: 1px) {
+  .transform-style-preserve-3d {
+    -moz-transform-style: preserve-3d;
+  }
+}
+
+/* Animação dinâmica do gradiente */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 60% 80%, 0% 0%;
+  }
+  20% {
+    background-position: 30% 70%, 70% 30%, 60% 40%, 40% 60%, 0% 0%;
+  }
+  40% {
+    background-position: 70% 30%, 30% 70%, 40% 60%, 80% 20%, 0% 0%;
+  }
+  60% {
+    background-position: 60% 40%, 40% 60%, 30% 70%, 20% 80%, 0% 0%;
+  }
+  80% {
+    background-position: 20% 80%, 80% 20%, 70% 30%, 60% 40%, 0% 0%;
+  }
+}
+
+/* Animações customizadas para o drone */
+@keyframes drone-hover {
+  0%, 100% { 
+    transform: translateY(0px) rotate(-8deg); 
+  }
+  50% { 
+    transform: translateY(-12px) rotate(-6deg); 
+  }
+}
+
+.animate-drone-hover {
+  animation: drone-hover 4s ease-in-out infinite;
+}
+
+/* Animação de entrada suave para o drone */
+@keyframes drone-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.animate-drone-entrance {
+  animation: drone-entrance 1s ease-out forwards;
+}
+
+/* Animação da sombra do drone */
+@keyframes drone-shadow {
+  0%, 100% { 
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateX(-50%) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+.animate-drone-shadow {
+  animation: drone-shadow 4s ease-in-out infinite;
+}
+
+/* Enhanced backdrop-blur support */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Frosted Glass Overlay */
+.frosted-glass-overlay {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  box-shadow: 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.01),
+    0 0 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Glass effects - sempre aplicados para manter consistência visual */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
