@@ -200,4 +200,16 @@ export const DEFAULT_DEVICE_CONFIG = {
   margin: DEVICE_MARGINS.desktop
 }
 
-export type DeviceInfo = typeof DEFAULT_DEVICE_CONFIG 
+export type DeviceInfo = {
+  type: DeviceType;
+  width: number;
+  height: number;
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
+  scale: number;
+  orientation: OrientationType;
+  isHighDPI: boolean;
+  isUltraWide: boolean;
+  margin: number; // Permitir qualquer número, não apenas 40
+} 

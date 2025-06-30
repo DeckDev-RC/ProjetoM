@@ -111,16 +111,13 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-sm rounded-2xl shadow-elegant transition-all duration-300 hover:shadow-elegant-hover;
-    background: transparent;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: none;
-    box-shadow: none;
+    @apply rounded-2xl transition-all duration-300;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .primary-button {
-    @apply bg-pulse-600 hover:bg-pulse-700 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98];
+    @apply bg-pulse-600 hover:bg-pulse-700 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
 
   .secondary-button {
@@ -132,43 +129,15 @@
   }
 }
 
-.image-scale-in {
-  animation: scaleIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes scaleIn {
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animação de fade-in usada no Hero.tsx */
+/* Animações essenciais otimizadas */
 .animate-fade-in {
-  animation: fadeIn 1s ease-in-out forwards;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -176,18 +145,19 @@
   }
 }
 
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Stagger animations para elementos */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
-
-.hover-lift {
-  transition: transform 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-}
 
 /* Parallax effect */
 .parallax {
@@ -217,7 +187,6 @@
     -moz-transform-style: preserve-3d;
   }
 }
-
 
 /* Animação dinâmica do gradiente */
 @keyframes gradient-shift {

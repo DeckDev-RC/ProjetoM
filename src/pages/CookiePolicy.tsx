@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
-import { FloatingOrbs } from "@/components/ui/orbs";
+
 import { ArrowUp, Cookie, Shield, Settings, Eye, BarChart3, Zap, AlertTriangle, Clock, Scale, ChevronLeft, Lock, Monitor, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import { useLanguageSync } from "@/hooks/useLanguageSync";
+import LanguageSwitch from "@/components/LanguageSwitch";
 
 const CookiePolicy = () => {
+  const { t } = useTranslation();
+  useLanguageSync(); // Garantir sincronização do idioma
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -62,23 +67,19 @@ const CookiePolicy = () => {
   };
 
   const sections = [
-    { id: "what-are-cookies", title: "O que são Cookies", icon: Cookie },
-    { id: "types-of-cookies", title: "Tipos de Cookies", icon: Settings },
-    { id: "cookies-we-use", title: "Cookies que Utilizamos", icon: Eye },
-    { id: "third-party-cookies", title: "Cookies de Terceiros", icon: BarChart3 },
-    { id: "cookie-management", title: "Gerenciar Cookies", icon: Settings },
-    { id: "legal-basis", title: "Base Legal", icon: Scale },
-    { id: "data-retention", title: "Retenção de Dados", icon: Clock },
-    { id: "policy-updates", title: "Atualizações", icon: AlertTriangle }
+    { id: "what-are-cookies", title: t('cookies.sections.whatAreCookies'), icon: Cookie },
+    { id: "types-of-cookies", title: t('cookies.sections.typesOfCookies'), icon: Settings },
+    { id: "cookies-we-use", title: t('cookies.sections.cookiesWeUse'), icon: Eye },
+    { id: "third-party-cookies", title: t('cookies.sections.thirdPartyCookies'), icon: BarChart3 },
+    { id: "cookie-management", title: t('cookies.sections.cookieManagement'), icon: Settings },
+    { id: "legal-basis", title: t('cookies.sections.legalBasis'), icon: Scale },
+    { id: "data-retention", title: t('cookies.sections.dataRetention'), icon: Clock },
+    { id: "policy-updates", title: t('cookies.sections.policyUpdates'), icon: AlertTriangle }
   ];
 
   return (
     <div className="min-h-screen relative bg-gray-950">
-      {/* Background Orbs */}
-      <FloatingOrbs orbCount={20} sectionId="cookies-background" enableMouseFollow={true} />
-      
-      {/* Frosted Glass Overlay - apenas para o background, não sobre o conteúdo */}
-      <div className="fixed inset-0 z-[1] pointer-events-none frosted-glass-overlay" style={{ zIndex: 0 }} />
+
       
       {/* Navbar customizada para página de cookies */}
       <header
@@ -107,18 +108,20 @@ const CookiePolicy = () => {
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
               <Cookie className="w-4 h-4 text-amber-400" />
-              <span className="text-sm font-medium text-amber-200 font-sans">Política de Cookies</span>
+              <span className="text-sm font-medium text-amber-200 font-sans">{t('cookies.badge')}</span>
             </div>
           </div>
 
-          {/* Botão voltar */}
+          {/* Botão voltar e seletor de idioma */}
           <div className="flex items-center gap-4">
+            <LanguageSwitch />
+            
             <a
               href="/"
               className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600/50 text-gray-300 hover:text-white transition-all duration-300 font-sans"
             >
               <ChevronLeft className="w-4 h-4" />
-              Voltar
+              {t('cookies.backButton')}
             </a>
             
             {/* Mobile - apenas ícone */}
@@ -140,11 +143,11 @@ const CookiePolicy = () => {
             <div className="text-center mb-12">
               <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100/80 dark:bg-amber-900/50 text-amber-600 dark:text-amber-300 border border-amber-200/50 dark:border-amber-700/50 mb-6 backdrop-blur-sm">
                 <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-500 text-white mr-2 font-sans">🍪</span>
-                <span className="font-sans">Transparência Digital</span>
+                <span className="font-sans">{t('cookies.badge')}</span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
-                Política de
+                {t('cookies.title')}
                 <br />
                 <span 
                   className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 via-orange-500 to-red-500"
@@ -153,7 +156,7 @@ const CookiePolicy = () => {
                     animation: 'gradientFlow 3s ease-in-out infinite'
                   }}
                 >
-                  Cookies
+                  {t('cookies.titleGradient')}
                 </span>
               </h1>
               
@@ -174,20 +177,19 @@ const CookiePolicy = () => {
               }} />
               
               <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8 font-sans">
-                Última atualização: 25 de janeiro de 2025
+                {t('cookies.lastUpdated')}
               </p>
               
               <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 max-w-2xl mx-auto">
                 <p className="text-sm text-amber-200 font-sans">
-                  Esta política explica como utilizamos cookies e tecnologias similares em nosso site, 
-                  garantindo transparência sobre coleta e uso de dados de navegação.
+                  {t('cookies.description')}
                 </p>
               </div>
             </div>
 
             {/* Índice */}
             <div className="max-w-4xl mx-auto mb-16">
-              <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">Índice</h2>
+              <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">{t('cookies.index')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {sections.map((section, index) => {
                   const Icon = section.icon;
@@ -222,23 +224,18 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Cookie className="w-6 h-6 text-amber-400" />
-                1. O que são Cookies
+                1. {t('cookies.content.whatAreCookies.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <p className="text-gray-300 mb-4">
-                  Cookies são pequenos arquivos de texto armazenados no seu dispositivo (computador, tablet ou smartphone) 
-                  quando você visita um site. Eles são amplamente utilizados para fazer os sites funcionarem de forma 
-                  mais eficiente e fornecer informações aos proprietários do site.
-                </p>
-                <p className="text-gray-300 mb-4">
-                  Os cookies permitem que um site reconheça seu dispositivo e armazene algumas informações sobre suas 
-                  preferências ou ações anteriores. Isso melhora sua experiência de navegação, tornando-a mais rápida 
-                  e personalizada.
-                </p>
+                {(t('cookies.content.whatAreCookies.content', { returnObjects: true }) as string[]).map((paragraph: string, index: number) => (
+                  <p key={index} className="text-gray-300 mb-4">
+                    {paragraph}
+                  </p>
+                ))}
                 <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
                   <p className="text-amber-200 font-medium">
                     <Lock className="w-4 h-4 inline mr-2" />
-                    Os cookies não podem acessar outros arquivos no seu dispositivo nem instalar vírus.
+                    {t('cookies.content.whatAreCookies.securityNote')}
                   </p>
                 </div>
               </div>
@@ -250,71 +247,67 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Settings className="w-6 h-6 text-blue-400" />
-                2. Tipos de Cookies
+                2. {t('cookies.content.typesOfCookies.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  Utilizamos diferentes tipos de cookies, cada um com uma finalidade específica:
+                  {t('cookies.content.typesOfCookies.description')}
                 </p>
                 <div className="grid gap-4">
                   <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-green-300 mb-2 flex items-center gap-2">
                       <Zap className="w-5 h-5" />
-                      Cookies Essenciais
+                      {t('cookies.content.typesOfCookies.types.essential.title')}
                     </h4>
                     <p className="text-gray-300 mb-2">
-                      Necessários para o funcionamento básico do site. Sem eles, algumas funcionalidades não funcionariam.
+                      {t('cookies.content.typesOfCookies.types.essential.description')}
                     </p>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li>• Manutenção da sessão do usuário</li>
-                      <li>• Configurações de segurança</li>
-                      <li>• Preferências de idioma</li>
-                      <li>• Estado de formulários</li>
+                      {(t('cookies.content.typesOfCookies.types.essential.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-blue-300 mb-2 flex items-center gap-2">
                       <BarChart3 className="w-5 h-5" />
-                      Cookies de Performance
+                      {t('cookies.content.typesOfCookies.types.performance.title')}
                     </h4>
                     <p className="text-gray-300 mb-2">
-                      Coletam informações sobre como você usa o site para melhorar sua performance.
+                      {t('cookies.content.typesOfCookies.types.performance.description')}
                     </p>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li>• Páginas mais visitadas</li>
-                      <li>• Tempo de carregamento</li>
-                      <li>• Erros encontrados</li>
-                      <li>• Padrões de navegação</li>
+                      {(t('cookies.content.typesOfCookies.types.performance.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-purple-300 mb-2 flex items-center gap-2">
                       <Eye className="w-5 h-5" />
-                      Cookies de Funcionalidade
+                      {t('cookies.content.typesOfCookies.types.functionality.title')}
                     </h4>
                     <p className="text-gray-300 mb-2">
-                      Permitem que o site lembre suas escolhas e forneça recursos aprimorados.
+                      {t('cookies.content.typesOfCookies.types.functionality.description')}
                     </p>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li>• Preferências de tema</li>
-                      <li>• Configurações de acessibilidade</li>
-                      <li>• Localização geográfica</li>
-                      <li>• Histórico de navegação</li>
+                      {(t('cookies.content.typesOfCookies.types.functionality.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-orange-500/10 border border-orange-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-orange-300 mb-2 flex items-center gap-2">
                       <Monitor className="w-5 h-5" />
-                      Cookies de Marketing
+                      {t('cookies.content.typesOfCookies.types.marketing.title')}
                     </h4>
                     <p className="text-gray-300 mb-2">
-                      Utilizados para tornar as mensagens publicitárias mais relevantes para você.
+                      {t('cookies.content.typesOfCookies.types.marketing.description')}
                     </p>
                     <ul className="text-gray-300 space-y-1 text-sm">
-                      <li>• Rastreamento de conversões</li>
-                      <li>• Personalização de anúncios</li>
-                      <li>• Análise de campanhas</li>
-                      <li>• Remarketing</li>
+                      {(t('cookies.content.typesOfCookies.types.marketing.features', { returnObjects: true }) as string[]).map((feature: string, index: number) => (
+                        <li key={index}>• {feature}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -327,45 +320,32 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Eye className="w-6 h-6 text-cyan-400" />
-                3. Cookies que Utilizamos
+                3. {t('cookies.content.cookiesWeUse.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  Detalhamento específico dos cookies utilizados em nosso site:
+                  {t('cookies.content.cookiesWeUse.description')}
                 </p>
                 <div className="space-y-6">
                   <div className="bg-cyan-500/10 border border-cyan-500/20 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold text-cyan-300 mb-4">Cookies Próprios (First-Party)</h4>
+                    <h4 className="text-lg font-semibold text-cyan-300 mb-4">{t('cookies.content.cookiesWeUse.firstParty.title')}</h4>
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm">
                         <thead>
                           <tr className="border-b border-gray-600">
-                            <th className="text-left py-2 text-cyan-200">Nome</th>
-                            <th className="text-left py-2 text-cyan-200">Finalidade</th>
-                            <th className="text-left py-2 text-cyan-200">Duração</th>
+                            <th className="text-left py-2 text-cyan-200">{t('cookies.content.cookiesWeUse.firstParty.tableHeaders.name')}</th>
+                            <th className="text-left py-2 text-cyan-200">{t('cookies.content.cookiesWeUse.firstParty.tableHeaders.purpose')}</th>
+                            <th className="text-left py-2 text-cyan-200">{t('cookies.content.cookiesWeUse.firstParty.tableHeaders.duration')}</th>
                           </tr>
                         </thead>
                         <tbody className="text-gray-300">
-                          <tr className="border-b border-gray-700">
-                            <td className="py-2 font-mono">session_id</td>
-                            <td className="py-2">Identificação da sessão</td>
-                            <td className="py-2">Sessão</td>
-                          </tr>
-                          <tr className="border-b border-gray-700">
-                            <td className="py-2 font-mono">user_preferences</td>
-                            <td className="py-2">Preferências do usuário</td>
-                            <td className="py-2">30 dias</td>
-                          </tr>
-                          <tr className="border-b border-gray-700">
-                            <td className="py-2 font-mono">cookie_consent</td>
-                            <td className="py-2">Consentimento de cookies</td>
-                            <td className="py-2">1 ano</td>
-                          </tr>
-                          <tr>
-                            <td className="py-2 font-mono">theme_mode</td>
-                            <td className="py-2">Modo escuro/claro</td>
-                            <td className="py-2">90 dias</td>
-                          </tr>
+                          {(t('cookies.content.cookiesWeUse.firstParty.cookies', { returnObjects: true }) as any[]).map((cookie: any, index: number) => (
+                            <tr key={index} className="border-b border-gray-700">
+                              <td className="py-2 font-mono">{cookie.name}</td>
+                              <td className="py-2">{cookie.purpose}</td>
+                              <td className="py-2">{cookie.duration}</td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
@@ -380,32 +360,32 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <BarChart3 className="w-6 h-6 text-purple-400" />
-                4. Cookies de Terceiros
+                4. {t('cookies.content.thirdPartyCookies.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  Também utilizamos cookies de serviços terceirizados para funcionalidades específicas:
+                  {t('cookies.content.thirdPartyCookies.description')}
                 </p>
                 <div className="space-y-4">
                   <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-2">Google Analytics</h4>
-                    <p className="text-gray-300 mb-2">Para análise de tráfego e comportamento dos usuários.</p>
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('cookies.content.thirdPartyCookies.services.googleAnalytics.title')}</h4>
+                    <p className="text-gray-300 mb-2">{t('cookies.content.thirdPartyCookies.services.googleAnalytics.description')}</p>
                     <p className="text-sm text-gray-400">
-                      Cookies: _ga, _ga_*, _gid, _gat_gtag_*
+                      Cookies: {t('cookies.content.thirdPartyCookies.services.googleAnalytics.cookies')}
                     </p>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-blue-300 mb-2">Google Tag Manager</h4>
-                    <p className="text-gray-300 mb-2">Para gerenciamento de tags e scripts.</p>
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('cookies.content.thirdPartyCookies.services.googleTagManager.title')}</h4>
+                    <p className="text-gray-300 mb-2">{t('cookies.content.thirdPartyCookies.services.googleTagManager.description')}</p>
                     <p className="text-sm text-gray-400">
-                      Cookies: _gtm, _gtag
+                      Cookies: {t('cookies.content.thirdPartyCookies.services.googleTagManager.cookies')}
                     </p>
                   </div>
                   <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-green-300 mb-2">Hotjar</h4>
-                    <p className="text-gray-300 mb-2">Para análise de experiência do usuário e mapas de calor.</p>
+                    <h4 className="text-lg font-semibold text-green-300 mb-2">{t('cookies.content.thirdPartyCookies.services.hotjar.title')}</h4>
+                    <p className="text-gray-300 mb-2">{t('cookies.content.thirdPartyCookies.services.hotjar.description')}</p>
                     <p className="text-sm text-gray-400">
-                      Cookies: _hjid, _hjSession*, _hjIncludedInPageviewSample
+                      Cookies: {t('cookies.content.thirdPartyCookies.services.hotjar.cookies')}
                     </p>
                   </div>
                 </div>
@@ -418,59 +398,57 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Settings className="w-6 h-6 text-teal-400" />
-                5. Como Gerenciar Cookies
+                5. {t('cookies.content.cookieManagement.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  Você tem controle total sobre os cookies. Pode gerenciá-los de várias formas:
+                  {t('cookies.content.cookieManagement.description')}
                 </p>
                 <div className="space-y-4">
                   <div className="bg-teal-500/10 border border-teal-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-teal-300 mb-2 flex items-center gap-2">
                       <Monitor className="w-5 h-5" />
-                      Configurações do Navegador
+                      {t('cookies.content.cookieManagement.methods.browserSettings.title')}
                     </h4>
                     <p className="text-gray-300 mb-3">
-                      Todos os navegadores permitem gerenciar cookies através de suas configurações:
+                      {t('cookies.content.cookieManagement.methods.browserSettings.description')}
                     </p>
                     <div className="grid gap-3">
                       <div className="bg-gray-700/30 p-3 rounded">
-                        <p className="font-medium text-white mb-1">Chrome</p>
-                        <p className="text-sm text-gray-300">Configurações → Privacidade e Segurança → Cookies</p>
+                        <p className="font-medium text-white mb-1">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.chrome.name')}</p>
+                        <p className="text-sm text-gray-300">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.chrome.path')}</p>
                       </div>
                       <div className="bg-gray-700/30 p-3 rounded">
-                        <p className="font-medium text-white mb-1">Firefox</p>
-                        <p className="text-sm text-gray-300">Preferências → Privacidade e Segurança → Cookies</p>
+                        <p className="font-medium text-white mb-1">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.firefox.name')}</p>
+                        <p className="text-sm text-gray-300">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.firefox.path')}</p>
                       </div>
                       <div className="bg-gray-700/30 p-3 rounded">
-                        <p className="font-medium text-white mb-1">Safari</p>
-                        <p className="text-sm text-gray-300">Preferências → Privacidade → Cookies</p>
+                        <p className="font-medium text-white mb-1">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.safari.name')}</p>
+                        <p className="text-sm text-gray-300">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.safari.path')}</p>
                       </div>
                       <div className="bg-gray-700/30 p-3 rounded">
-                        <p className="font-medium text-white mb-1">Edge</p>
-                        <p className="text-sm text-gray-300">Configurações → Cookies e Permissões do Site</p>
+                        <p className="font-medium text-white mb-1">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.edge.name')}</p>
+                        <p className="text-sm text-gray-300">{t('cookies.content.cookieManagement.methods.browserSettings.browsers.edge.path')}</p>
                       </div>
                     </div>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
                     <h4 className="text-lg font-semibold text-blue-300 mb-2 flex items-center gap-2">
                       <Smartphone className="w-5 h-5" />
-                      Banner de Consentimento
+                      {t('cookies.content.cookieManagement.methods.consentBanner.title')}
                     </h4>
                     <p className="text-gray-300">
-                      Use nosso banner de cookies para aceitar ou recusar categorias específicas de cookies.
-                      Suas preferências serão lembradas para futuras visitas.
+                      {t('cookies.content.cookieManagement.methods.consentBanner.description')}
                     </p>
                   </div>
                   <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-yellow-300 mb-2">Opt-out de Terceiros</h4>
+                    <h4 className="text-lg font-semibold text-yellow-300 mb-2">{t('cookies.content.cookieManagement.methods.thirdPartyOptOut.title')}</h4>
                     <div className="space-y-2 text-sm">
-                      <p className="text-gray-300">
-                        • <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:underline">Google Analytics Opt-out</a>
-                      </p>
-                      <p className="text-gray-300">
-                        • <a href="https://www.hotjar.com/legal/compliance/opt-out" target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:underline">Hotjar Opt-out</a>
-                      </p>
+                      {(t('cookies.content.cookieManagement.methods.thirdPartyOptOut.links', { returnObjects: true }) as any[]).map((link: any, index: number) => (
+                        <p key={index} className="text-gray-300">
+                          • <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-yellow-300 hover:underline">{link.name}</a>
+                        </p>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -483,29 +461,29 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Scale className="w-6 h-6 text-indigo-400" />
-                6. Base Legal
+                6. {t('cookies.content.legalBasis.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  O uso de cookies é baseado nas seguintes bases legais:
+                  {t('cookies.content.legalBasis.description')}
                 </p>
                 <div className="space-y-4">
                   <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-indigo-300 mb-2">Consentimento (Art. 7º, I da LGPD)</h4>
+                    <h4 className="text-lg font-semibold text-indigo-300 mb-2">{t('cookies.content.legalBasis.bases.consent.title')}</h4>
                     <p className="text-gray-300">
-                      Para cookies não essenciais, obtemos seu consentimento explícito através do banner de cookies.
+                      {t('cookies.content.legalBasis.bases.consent.description')}
                     </p>
                   </div>
                   <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-green-300 mb-2">Legítimo Interesse (Art. 7º, IX da LGPD)</h4>
+                    <h4 className="text-lg font-semibold text-green-300 mb-2">{t('cookies.content.legalBasis.bases.legitimateInterest.title')}</h4>
                     <p className="text-gray-300">
-                      Para cookies essenciais necessários ao funcionamento do site e melhoria dos serviços.
+                      {t('cookies.content.legalBasis.bases.legitimateInterest.description')}
                     </p>
                   </div>
                   <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-blue-300 mb-2">Execução de Contrato (Art. 7º, V da LGPD)</h4>
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('cookies.content.legalBasis.bases.contractExecution.title')}</h4>
                     <p className="text-gray-300">
-                      Para cookies necessários à prestação dos serviços contratados.
+                      {t('cookies.content.legalBasis.bases.contractExecution.description')}
                     </p>
                   </div>
                 </div>
@@ -518,29 +496,29 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <Clock className="w-6 h-6 text-orange-400" />
-                7. Retenção de Dados
+                7. {t('cookies.content.dataRetention.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  Os dados coletados através de cookies são mantidos pelos seguintes períodos:
+                  {t('cookies.content.dataRetention.description')}
                 </p>
                 <div className="space-y-4">
                   <div className="bg-orange-500/10 border border-orange-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-orange-300 mb-2">Cookies de Sessão</h4>
+                    <h4 className="text-lg font-semibold text-orange-300 mb-2">{t('cookies.content.dataRetention.periods.sessionCookies.title')}</h4>
                     <p className="text-gray-300">
-                      Eliminados automaticamente quando você fecha o navegador.
+                      {t('cookies.content.dataRetention.periods.sessionCookies.description')}
                     </p>
                   </div>
                   <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-yellow-300 mb-2">Cookies Persistentes</h4>
+                    <h4 className="text-lg font-semibold text-yellow-300 mb-2">{t('cookies.content.dataRetention.periods.persistentCookies.title')}</h4>
                     <p className="text-gray-300">
-                      Mantidos pelo período especificado em cada cookie (de 30 dias a 2 anos).
+                      {t('cookies.content.dataRetention.periods.persistentCookies.description')}
                     </p>
                   </div>
                   <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-red-300 mb-2">Dados Analíticos</h4>
+                    <h4 className="text-lg font-semibold text-red-300 mb-2">{t('cookies.content.dataRetention.periods.analyticsData.title')}</h4>
                     <p className="text-gray-300">
-                      Dados agregados e anonimizados podem ser mantidos por até 26 meses para análise de tendências.
+                      {t('cookies.content.dataRetention.periods.analyticsData.description')}
                     </p>
                   </div>
                 </div>
@@ -553,21 +531,18 @@ const CookiePolicy = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <AlertTriangle className="w-6 h-6 text-red-400" />
-                8. Atualizações desta Política
+                8. {t('cookies.content.policyUpdates.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <p className="text-gray-300 mb-4">
-                  Esta Política de Cookies pode ser atualizada periodicamente para refletir mudanças em nossas 
-                  práticas ou por motivos operacionais, legais ou regulamentares.
-                </p>
-                <p className="text-gray-300 mb-6">
-                  Quando fizermos alterações significativas, notificaremos você através do banner de cookies 
-                  ou por outros meios apropriados antes que as mudanças entrem em vigor.
-                </p>
+                {(t('cookies.content.policyUpdates.content', { returnObjects: true }) as string[]).map((paragraph: string, index: number) => (
+                  <p key={index} className="text-gray-300 mb-4">
+                    {paragraph}
+                  </p>
+                ))}
                 <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
                   <p className="text-red-200 font-medium">
                     <AlertTriangle className="w-4 h-4 inline mr-2" />
-                    Recomendamos que você revise esta política periodicamente para se manter informado sobre como utilizamos cookies.
+                    {t('cookies.content.policyUpdates.reviewNote')}
                   </p>
                 </div>
               </div>
@@ -578,27 +553,26 @@ const CookiePolicy = () => {
           <section className="mb-16">
             <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">
-                Dúvidas sobre Cookies?
+                {t('cookies.content.contact.title')}
               </h2>
               <div className="text-center">
                 <p className="text-gray-300 mb-6 font-sans">
-                  Se você tiver dúvidas sobre nossa Política de Cookies ou quiser exercer seus direitos, 
-                  entre em contato conosco.
+                  {t('cookies.content.contact.description')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="mailto:contato@mindtecnologia-ai.com.br"
+                    href={`mailto:${t('cookies.content.contact.email')}`}
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 text-blue-200 hover:text-blue-100 transition-all duration-300 font-sans"
                   >
                     <Shield className="w-4 h-4" />
-                    contato@mindtecnologia-ai.com.br
+                    {t('cookies.content.contact.email')}
                   </a>
                   <a
                     href="#contact"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 hover:border-purple-500/50 text-purple-200 hover:text-purple-100 transition-all duration-300 font-sans"
                   >
                     <Eye className="w-4 h-4" />
-                    Fale Conosco
+                    {t('cookies.content.contact.contactLink')}
                   </a>
                 </div>
               </div>
@@ -611,7 +585,7 @@ const CookiePolicy = () => {
       <button
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-        aria-label="Voltar ao topo"
+        aria-label={t('common.backToTop')}
       >
         <ArrowUp className="w-5 h-5" />
       </button>

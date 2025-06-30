@@ -4,8 +4,11 @@ import { Menu, X } from "lucide-react";
 import { useDeviceDetection, useOrientation } from "@/hooks/use-mobile";
 import { useResponsiveValue } from "@/hooks/useResponsiveUtils";
 import { COMPONENT_CONFIG } from "@/lib/responsive-config";
+import { useTranslation } from "react-i18next";
+import LanguageSwitch from "./LanguageSwitch";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -127,7 +130,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <a 
           href="#" 
-          className="flex items-center space-x-2 flex-shrink-0"
+          className="flex items-center space-x-2 flex-shrink-0 md:-ml-[100px]"
           onClick={(e) => {
             e.preventDefault();
             scrollToTop();
@@ -152,30 +155,47 @@ const Navbar = () => {
           />
         </a>
 
-        {/* Desktop Navigation - centralizado e movido 350px para direita */}
-        {!isTrueMobile && deviceInfo.isDesktop && (
-          <nav className="hidden md:flex items-center justify-between absolute left-1/2 transform -translate-x-1/2 max-w-md w-full" style={{ marginLeft: '350px' }}>
-            <a href="#" className="relative text-gray-200 hover:text-blue-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all hover:after:w-full font-sans" onClick={(e) => { e.preventDefault(); scrollToTop(); }}>Home</a>
-            <a href="#features" className="relative text-gray-200 hover:text-pulse-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-pulse-400 after:transition-all hover:after:w-full font-sans">Recursos</a>
-            <a href="#process-optimization" className="relative text-gray-200 hover:text-indigo-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-400 after:transition-all hover:after:w-full font-sans">Estratégia</a>
-            <a href="#faq" className="relative text-gray-200 hover:text-violet-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-violet-400 after:transition-all hover:after:w-full font-sans">FAQ</a>
-            <a href="#contact" className="relative text-gray-200 hover:text-green-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-400 after:transition-all hover:after:w-full font-sans">Contato</a>
+        {/* Desktop Navigation e Language Switch */}
+        <div className="hidden md:flex items-center justify-center flex-1">
+          {/* Menu de navegação centralizado */}
+          <nav 
+            className="flex items-center justify-center gap-8 max-w-2xl"
+            style={{
+              transform: window.innerWidth >= 768 ? 'translateX(-60px)' : 'none'
+            }}
+          >
+            <a href="#" className="relative text-gray-200 hover:text-blue-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all hover:after:w-full font-sans" onClick={(e) => { e.preventDefault(); scrollToTop(); }}>{t('navbar.home')}</a>
+            <a href="#features" className="relative text-gray-200 hover:text-pulse-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-pulse-400 after:transition-all hover:after:w-full font-sans">{t('navbar.features')}</a>
+            <a href="#process-optimization" className="relative text-gray-200 hover:text-indigo-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-indigo-400 after:transition-all hover:after:w-full font-sans">{t('navbar.strategy')}</a>
+            <a href="#faq" className="relative text-gray-200 hover:text-violet-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-violet-400 after:transition-all hover:after:w-full font-sans">{t('navbar.faq')}</a>
+            <a href="#contact" className="relative text-gray-200 hover:text-green-400 py-2 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-green-400 after:transition-all hover:after:w-full font-sans">{t('navbar.contact')}</a>
           </nav>
-        )}
+        </div>
+
+        {/* Desktop Language Switch */}
+        <div 
+          className="hidden md:flex items-center"
+          style={{
+            transform: window.innerWidth >= 768 ? 'translateX(-100px)' : 'none'
+          }}
+        >
+          <LanguageSwitch />
+        </div>
 
         {/* Mobile Menu Button - mostra para todos os dispositivos móveis, incluindo iPhone landscape */}
-        {isTrueMobile && (
-          <div className="flex items-center space-x-4">
-            {/* Mobile menu button - increased touch target */}
-            <button 
-              className="menu-button text-gray-200 p-3 focus:outline-none hover:bg-white/10 rounded-lg transition-colors" 
-              onClick={toggleMenu}
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        )}
+        <div className="flex md:hidden items-center space-x-4">
+          {/* Language switch for mobile */}
+          <LanguageSwitch />
+          
+          {/* Mobile menu button - increased touch target */}
+          <button 
+            className="menu-button text-gray-200 p-3 focus:outline-none hover:bg-white/10 rounded-lg transition-colors" 
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Overlay */}
@@ -241,7 +261,7 @@ const Navbar = () => {
                   scrollToTop();
                 }}
               >
-                Home
+                {t('navbar.home')}
               </a>
               <a 
                 href="#features" 
@@ -254,7 +274,7 @@ const Navbar = () => {
                   document.body.style.overflow = '';
                 }}
               >
-                Recursos
+                {t('navbar.features')}
               </a>
               <a 
                 href="#process-optimization" 
@@ -267,7 +287,7 @@ const Navbar = () => {
                   document.body.style.overflow = '';
                 }}
               >
-                Estratégia
+                {t('navbar.strategy')}
               </a>
               <a 
                 href="#faq" 
@@ -280,7 +300,7 @@ const Navbar = () => {
                   document.body.style.overflow = '';
                 }}
               >
-                FAQ
+                {t('navbar.faq')}
               </a>
               <a 
                 href="#contact" 
@@ -293,7 +313,7 @@ const Navbar = () => {
                   document.body.style.overflow = '';
                 }}
               >
-                Contato
+                {t('navbar.contact')}
               </a>
               
               {/* Botão Começar Agora - logo abaixo de Contato */}
@@ -325,7 +345,7 @@ const Navbar = () => {
                     }
                   }}
                 >
-                  Começar Agora
+                  {t('navbar.getStarted')}
                 </button>
               </div>
             </div>

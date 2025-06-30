@@ -6,6 +6,8 @@ import {
   useResponsiveAnimation 
 } from "@/hooks/useResponsiveUtils";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import { useTranslation } from "react-i18next";
+
 
 // Função robusta para detectar dispositivos móveis reais
 const isRealMobileDevice = (): boolean => {
@@ -102,7 +104,7 @@ const SVGConnector: React.FC<ConnectorProps> = ({ from, to, color, type = "curve
         opacity="0.15"
         filter="url(#glow)"
       />
-      {/* Linha principal animada */}
+      {/* Linha principal estática */}
       <path
         d={getPath()}
         stroke={`url(#${getGradientId(color)})`}
@@ -110,24 +112,8 @@ const SVGConnector: React.FC<ConnectorProps> = ({ from, to, color, type = "curve
         fill="none"
         strokeDasharray="8,8"
         filter="url(#glow)"
-        className="animate-pulse"
-      >
-        <animate
-          attributeName="stroke-dashoffset"
-          from="0"
-          to="16"
-          dur="2s"
-          repeatCount="indefinite"
-        />
-      </path>
-      {/* Partículas em movimento ao longo do caminho */}
-      <circle r="3" fill={`url(#${getGradientId(color)})`}>
-        <animateMotion
-          dur="3s"
-          repeatCount="indefinite"
-          path={getPath()}
-        />
-      </circle>
+        opacity="0.8"
+      />
     </>
   );
 };
@@ -309,6 +295,7 @@ const StrategyCard: React.FC<StrategyCardProps> = ({
 };
 
 const ProcessOptimizationSection = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = React.useState(false);
@@ -318,6 +305,9 @@ const ProcessOptimizationSection = () => {
   const container = useResponsiveContainer('processOptimization');
   const innerScale = useResponsiveInnerScale();
   const animation = useResponsiveAnimation();
+  
+  // Configuração estática para melhor performance
+  const performanceConfig = { enableAnimations: true, enableHeavyAnimations: false };
 
   // Detectar se é realmente um dispositivo móvel
   const [isRealMobile, setIsRealMobile] = React.useState(false);
@@ -377,35 +367,35 @@ const ProcessOptimizationSection = () => {
   const strategies = [
     {
       id: 1,
-      name: "Automatize com Inteligência",
-      role: "Automatize com Inteligência",
+      name: t('strategy.cards.automation.title'),
+      role: t('strategy.cards.automation.title'),
       icon: "/webp/Automatize-com-inteligencia.webp",
-      quote: "Reduza tarefas manuais com **automações que aprendem** com seus processos e **tomam decisões** em tempo real.",
+      quote: t('strategy.cards.automation.description'),
       accentColor: "pulse" as const
     },
     {
       id: 2,
-      name: "Conecte Tudo com Precisão",
-      role: "Conecte Tudo com Precisão", 
+      name: t('strategy.cards.integration.title'),
+      role: t('strategy.cards.integration.title'), 
       icon: "/webp/Conecte-tudo-precisao.webp",
-      quote: "Integramos seus **sistemas, APIs e ferramentas** para criar um **ecossistema unificado**, eficiente e inteligente.",
+      quote: t('strategy.cards.integration.description'),
       accentColor: "blurple" as const
     },
     {
       id: 3,
-      name: "Fluxos Estratégicos e Adaptáveis",
-      role: "Fluxos Estratégicos e Adaptáveis",
+      name: t('strategy.cards.workflows.title'),
+      role: t('strategy.cards.workflows.title'),
       icon: "/webp/Fluxos-estrategicos-adaptaveis.webp",
-      quote: "Criamos **fluxos de IA** que se moldam à realidade do seu negócio — **do simples ao complexo**, tudo sob controle.",
+      quote: t('strategy.cards.workflows.description'),
       accentColor: "indigo" as const,
       showMoreOptions: true
     },
     {
       id: 4,
-      name: "Crescimento com Monitoramento Total",
-      role: "Crescimento com Monitoramento Total",
+      name: t('strategy.cards.monitoring.title'),
+      role: t('strategy.cards.monitoring.title'),
       icon: "/webp/Crescimento-monitoramento-total.webp",
-      quote: "Nossas soluções **escalam com seu negócio** e oferecem **rastreabilidade e ajustes** em tempo real, sempre com performance.",
+      quote: t('strategy.cards.monitoring.description'),
       accentColor: "violet" as const
     }
   ];
@@ -436,7 +426,7 @@ const ProcessOptimizationSection = () => {
     </div>
   );
 
-  // Layout desktop com todas as animações
+  // Layout desktop com animações condicionais baseadas na performance
   const DesktopLayout = () => (
     <div 
       ref={containerRef} 
@@ -448,121 +438,93 @@ const ProcessOptimizationSection = () => {
         className={innerScale.classes}
         style={innerScale.styles}
       >
-        {/* SVG Connector Lines */}
-        <svg 
-          className="absolute inset-0 w-full h-full pointer-events-none opacity-60 z-10" 
-          viewBox="0 0 1200 980"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <defs>
-            <linearGradient id="neonPulse" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2ABFFF" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#47C3FF" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#2ABFFF" stopOpacity="0.9" />
-            </linearGradient>
-            <linearGradient id="neonBlurple" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2B75D8" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#4F9FFF" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#2B75D8" stopOpacity="0.9" />
-            </linearGradient>
-            <linearGradient id="neonIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#524EBF" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#7767C7" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#524EBF" stopOpacity="0.9" />
-            </linearGradient>
-            <linearGradient id="neonViolet" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4C30AF" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#674FB7" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#4C30AF" stopOpacity="0.9" />
-            </linearGradient>
+        {/* SVG Connector Lines - Versão otimizada */}
+        {performanceConfig.enableAnimations && (
+          <svg 
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-60 z-10" 
+            viewBox="0 0 1200 980"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <linearGradient id="neonPulse" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#2ABFFF" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#47C3FF" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#2ABFFF" stopOpacity="0.9" />
+              </linearGradient>
+              <linearGradient id="neonBlurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#2B75D8" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#4F9FFF" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#2B75D8" stopOpacity="0.9" />
+              </linearGradient>
+              <linearGradient id="neonIndigo" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#524EBF" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#7767C7" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#524EBF" stopOpacity="0.9" />
+              </linearGradient>
+              <linearGradient id="neonViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#4C30AF" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#674FB7" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#4C30AF" stopOpacity="0.9" />
+              </linearGradient>
 
-            {/* Filtro otimizado para os nodes */}
-            <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
-              <feGaussianBlur in="blur1" stdDeviation="4" result="blur2" />
-              <feMerge>
-                <feMergeNode in="blur2" />
-                <feMergeNode in="blur1" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
+              {/* Filtro otimizado para os nodes */}
+              <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1" />
+                <feGaussianBlur in="blur1" stdDeviation="4" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
 
-            {/* Filtro para as linhas */}
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feFlood floodColor="#ffffff" result="color" />
-              <feComposite in="color" in2="coloredBlur" operator="in" result="glow" />
-              <feMerge> 
-                <feMergeNode in="glow"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          
-          {/* Render all connections */}
-          {connections.map((connection, index) => (
-            <SVGConnector
-              key={index}
-              from={connection.from}
-              to={connection.to}
-              color={connection.color}
-              type="curved"
-            />
-          ))}
-          
-          {/* Connection nodes with improved glow effect */}
-          {connections.map((connection, index) => (
-            <g key={`nodes-${index}`}>
-              {/* Node de origem com brilho suave */}
-              <circle 
-                cx={connection.from.x} 
-                cy={connection.from.y} 
-                r="6" 
-                fill={`url(#${getGradientId(connection.color)})`}
-                opacity="0.3"
-                filter="url(#nodeGlow)"
+              {/* Filtro para as linhas */}
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feFlood floodColor="#ffffff" result="color" />
+                <feComposite in="color" in2="coloredBlur" operator="in" result="glow" />
+                <feMerge> 
+                  <feMergeNode in="glow"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Render all connections */}
+            {connections.map((connection, index) => (
+              <SVGConnector
+                key={index}
+                from={connection.from}
+                to={connection.to}
+                color={connection.color}
+                type="curved"
               />
-              <circle 
-                cx={connection.from.x} 
-                cy={connection.from.y} 
-                r="3" 
-                fill={`url(#${getGradientId(connection.color)})`}
-                opacity="0.9"
-              >
-                <animate
-                  attributeName="r"
-                  values="3;3.5;3"
-                  dur="2s"
-                  repeatCount="indefinite"
+            ))}
+            
+            {/* Connection nodes estáticos */}
+            {connections.map((connection, index) => (
+              <g key={`nodes-${index}`}>
+                {/* Node de origem */}
+                <circle 
+                  cx={connection.from.x} 
+                  cy={connection.from.y} 
+                  r="4" 
+                  fill={`url(#${getGradientId(connection.color)})`}
+                  opacity="0.8"
                 />
-              </circle>
-
-              {/* Node de destino com brilho suave */}
-              <circle 
-                cx={connection.to.x} 
-                cy={connection.to.y} 
-                r="6" 
-                fill={`url(#${getGradientId(connection.color)})`}
-                opacity="0.3"
-                filter="url(#nodeGlow)"
-              />
-              <circle 
-                cx={connection.to.x} 
-                cy={connection.to.y} 
-                r="3" 
-                fill={`url(#${getGradientId(connection.color)})`}
-                opacity="0.9"
-              >
-                <animate
-                  attributeName="r"
-                  values="3;3.5;3"
-                  dur="2s"
-                  repeatCount="indefinite"
+                
+                {/* Node de destino */}
+                <circle 
+                  cx={connection.to.x} 
+                  cy={connection.to.y} 
+                  r="4" 
+                  fill={`url(#${getGradientId(connection.color)})`}
+                  opacity="0.8"
                 />
-              </circle>
-            </g>
-          ))}
-        </svg>
+              </g>
+            ))}
+          </svg>
+        )}
 
         {/* Strategy Cards - Layout para desktop */}
         <div className="relative h-[980px] z-20">
@@ -604,26 +566,38 @@ const ProcessOptimizationSection = () => {
       id="process-optimization" 
       ref={sectionRef}
     >
-      {/* CSS para desktop */}
+      {/* CSS para desktop - Condicionais baseadas na performance */}
       {!isRealMobile && (
         <style dangerouslySetInnerHTML={{
           __html: `
-            @keyframes gradientFlow {
-              0% { background-position: 0% 50%; }
-              50% { background-position: 100% 50%; }
-              100% { background-position: 0% 50%; }
-            }
+            ${performanceConfig.enableAnimations ? `
+              @keyframes gradientFlow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+              }
+            ` : ''}
 
-            .glass-card {
-              backdrop-filter: blur(10px);
-              -webkit-backdrop-filter: blur(10px);
-            }
+            
 
             .animate-on-scroll {
               opacity: ${isVisible ? 1 : 0};
               transform: translateY(${isVisible ? 0 : '20px'});
-              transition: all ${animation.duration} ${animation.easing};
+              transition: ${performanceConfig.enableAnimations ? `all ${animation.duration} ${animation.easing}` : 'none'};
             }
+
+            /* Desabilitar hover effects para baixa performance */
+            ${!performanceConfig.enableAnimations ? `
+              .group-hover\\:scale-\\[1\\.02\\] {
+                transform: none !important;
+              }
+              .hover\\:scale-\\[1\\.02\\] {
+                transform: none !important;
+              }
+              .hover\\:shadow-3xl {
+                box-shadow: inherit !important;
+              }
+            ` : ''}
           `
         }} />
       )}
@@ -795,7 +769,7 @@ const ProcessOptimizationSection = () => {
           <div className="flex items-center gap-4">
             <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-100/80 dark:bg-pulse-900/50 text-pulse-600 dark:text-pulse-300 border border-pulse-200/50 dark:border-pulse-700/50">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2 font-sans">03</span>
-              <span className="font-sans">Estratégia</span>
+              <span className="font-sans">{t('strategy.badge')}</span>
             </div>
           </div>
           <div className="flex-1 h-[1px] bg-pulse-300/60 dark:bg-pulse-700/60"></div>
@@ -804,21 +778,21 @@ const ProcessOptimizationSection = () => {
         {/* Main Title */}
         <div className={`max-w-4xl mb-6 sm:mb-10 lg:mb-16 ${isRealMobile ? '' : `transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}`} style={isRealMobile ? {} : { animationDelay: '0.2s' }}>
           <h1 className="section-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-3 sm:mb-4 lg:mb-6 font-display">
-            <span className="text-white">Inteligência Avançada,</span>
+            <span className="text-white">{t('strategy.title')}</span>
             <br />
             <span 
               className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
               style={isRealMobile ? {} : {
-                backgroundSize: '200% 200%',
-                animation: 'gradientFlow 3s ease-in-out infinite'
+                backgroundSize: performanceConfig.enableAnimations ? '200% 200%' : '100% 100%',
+                animation: performanceConfig.enableAnimations ? 'gradientFlow 3s ease-in-out infinite' : 'none'
               }}
             >
-              Automação Intuitiva
+              {t('strategy.titleGradient')}
             </span>
           </h1>
           
           <p className="section-subtitle text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl font-sans">
-            Por dentro do que torna nossa IA tão eficiente
+            {t('strategy.description')}
           </p>
         </div>
 

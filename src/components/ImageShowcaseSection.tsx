@@ -1,7 +1,10 @@
 import React from "react";
 import LazyVideo from "@/components/LazyVideo";
+import { useTranslation } from "react-i18next";
 
 const ImageShowcaseSection = () => {
+  const { t } = useTranslation();
+  
   return (
         <section className="w-full pt-0 pb-8 sm:pb-12 relative overflow-hidden" id="showcase">
       {/* Glass background overlay */}
@@ -11,11 +14,11 @@ const ImageShowcaseSection = () => {
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 animate-on-scroll">
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100/80 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 border border-indigo-200/50 dark:border-indigo-700/50 mb-4 backdrop-blur-sm">
                           <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500 text-white mr-2 font-sans">02</span>
-            <span className="font-sans">Showcase</span>
+            <span className="font-sans">{t('showcase.badge')}</span>
           </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-tight text-gray-900 dark:text-white mb-6 sm:mb-7 leading-loose">
-          <span>Agentes que se Moldam</span>
+          <span>{t('showcase.title')}</span>
           <br/>
               <span 
                 className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
@@ -24,11 +27,11 @@ const ImageShowcaseSection = () => {
                   animation: 'gradientFlow 3s ease-in-out infinite'
                 }}
               >
-                ao seu Negócio
+                {t('showcase.titleGradient')}
               </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-sans">
-          Além dos modelos prontos, criamos agentes inteligentes personalizados, projetados para atender com precisão as necessidades da sua empresa.
+          {t('showcase.description')}
           </p>
         </div>
         
@@ -45,7 +48,7 @@ const ImageShowcaseSection = () => {
           </div>
           <div className="bg-white dark:bg-gray-900 p-4 sm:p-8">
             <h3 className="text-xl sm:text-2xl font-display font-semibold mb-3 sm:mb-4 dark:text-white">
-              <span>Potencialize seu Negócio com nossos </span>
+              <span>{t('showcase.cardTitle')} </span>
               <span 
                 className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
                 style={{
@@ -53,7 +56,7 @@ const ImageShowcaseSection = () => {
                   animation: 'gradientFlow 3s ease-in-out infinite'
                 }}
               >
-               Agentes Inteligentes
+               {t('showcase.cardTitleGradient')}
               </span>
             </h3>
             
@@ -73,21 +76,18 @@ const ImageShowcaseSection = () => {
               `
             }} />
             <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base font-sans">
-             A Inteligência Artificial não é mais coisa do futuro. 
-             Hoje, ela está ao seu alcance, pronta para automatizar 
-             tarefas, otimizar processos e liberar seu 
-             tempo para o que realmente importa.
+             {t('showcase.cardDescription')}
             </p>
             
             <div className="mt-6 flex flex-wrap gap-3">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-100 dark:bg-pulse-900/30 text-pulse-700 dark:text-pulse-300 font-sans">
-              IA Personalizada
+              {t('showcase.tags.customAI')}
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blurple-100 dark:bg-blurple-900/30 text-blurple-700 dark:text-blurple-300 font-sans">
-              Automação Inteligente
+              {t('showcase.tags.smartAutomation')}
               </span>
                               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-sans">
-              Soluções Sob Medida
+              {t('showcase.tags.customSolutions')}
               </span>
             </div>
           </div>

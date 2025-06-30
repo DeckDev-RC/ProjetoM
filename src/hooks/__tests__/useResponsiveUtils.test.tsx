@@ -40,7 +40,7 @@ describe.skip('useResponsiveUtils', () => {
         orientation: 'portrait',
         isHighDPI: false,
         isUltraWide: false,
-        margin: '1rem'
+        margin: 15
       })
 
       const { result } = renderHook(() => useResponsivePadding('hero'))
@@ -50,11 +50,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return tablet padding for tablet devices', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'tablet-md',
+        width: 768,
+        height: 1024,
         isMobile: false,
         isTablet: true,
         isDesktop: false,
-        screenWidth: 768,
-        screenHeight: 1024
+        scale: 0.7,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 30
       })
 
       const { result } = renderHook(() => useResponsivePadding('hero'))
@@ -64,11 +70,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return desktop padding for desktop devices', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const { result } = renderHook(() => useResponsivePadding('hero'))
@@ -78,29 +90,41 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should handle different section types', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const heroResult = renderHook(() => useResponsivePadding('hero'))
-      const featuresResult = renderHook(() => useResponsivePadding('features'))
-      const contactResult = renderHook(() => useResponsivePadding('contact'))
+      const processOptimizationResult = renderHook(() => useResponsivePadding('processOptimization'))
+      const navbarResult = renderHook(() => useResponsivePadding('navbar'))
       
       expect(heroResult.result.current).toBeDefined()
-      expect(featuresResult.result.current).toBeDefined()
-      expect(contactResult.result.current).toBeDefined()
+      expect(processOptimizationResult.result.current).toBeDefined()
+      expect(navbarResult.result.current).toBeDefined()
     })
 
     it('should handle undefined section gracefully', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const { result } = renderHook(() => useResponsivePadding())
@@ -113,11 +137,17 @@ describe.skip('useResponsiveUtils', () => {
   describe('useResponsiveValue', () => {
     it('should return mobile-xs value for very small screens', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-xs',
+        width: 320,
+        height: 568,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 320,
-        screenHeight: 568
+        scale: 0.35,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 10
       })
 
       const values = {
@@ -133,11 +163,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return mobile-sm value for small mobile screens', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-sm',
+        width: 375,
+        height: 667,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 375,
-        screenHeight: 667
+        scale: 0.4,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 15
       })
 
       const values = {
@@ -154,11 +190,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return mobile-md value for medium mobile screens', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-md',
+        width: 414,
+        height: 896,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 414,
-        screenHeight: 896
+        scale: 0.45,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 20
       })
 
       const values = {
@@ -175,11 +217,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return tablet-sm value for small tablets', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'tablet-sm',
+        width: 640,
+        height: 960,
         isMobile: false,
         isTablet: true,
         isDesktop: false,
-        screenWidth: 640,
-        screenHeight: 960
+        scale: 0.55,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 25
       })
 
       const values = {
@@ -196,11 +244,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return tablet-md value for medium tablets', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'tablet-md',
+        width: 768,
+        height: 1024,
         isMobile: false,
         isTablet: true,
         isDesktop: false,
-        screenWidth: 768,
-        screenHeight: 1024
+        scale: 0.7,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 30
       })
 
       const values = {
@@ -217,11 +271,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return tablet-lg value for large tablets', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'tablet-lg',
+        width: 1024,
+        height: 768,
         isMobile: false,
         isTablet: true,
         isDesktop: false,
-        screenWidth: 1024,
-        screenHeight: 768
+        scale: 0.85,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 35
       })
 
       const values = {
@@ -237,11 +297,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return desktop value for desktop screens', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const values = {
@@ -257,11 +323,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should return default value when no matching breakpoint', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const values = {
@@ -276,11 +348,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should handle empty values object', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       const { result } = renderHook(() => useResponsiveValue({}, 'fallback'))
@@ -290,11 +368,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should handle complex object values', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-sm',
+        width: 375,
+        height: 667,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 375,
-        screenHeight: 667
+        scale: 0.4,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 15
       })
 
       const values = {
@@ -309,11 +393,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should handle numeric values', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'tablet-md',
+        width: 768,
+        height: 1024,
         isMobile: false,
         isTablet: true,
         isDesktop: false,
-        screenWidth: 768,
-        screenHeight: 1024
+        scale: 0.7,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 30
       })
 
       const values = {
@@ -329,11 +419,17 @@ describe.skip('useResponsiveUtils', () => {
 
     it('should handle boolean values', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-xs',
+        width: 320,
+        height: 568,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 320,
-        screenHeight: 568
+        scale: 0.35,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 10
       })
 
       const values = {
@@ -351,11 +447,17 @@ describe.skip('useResponsiveUtils', () => {
   describe('Integration Tests', () => {
     it('should work together for responsive component configuration', () => {
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-sm',
+        width: 375,
+        height: 667,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 375,
-        screenHeight: 667
+        scale: 0.4,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 15
       })
 
       const paddingResult = renderHook(() => useResponsivePadding('hero'))
@@ -372,11 +474,17 @@ describe.skip('useResponsiveUtils', () => {
     it('should handle device type changes', () => {
       // Simular mudança de mobile para desktop
       mockUseDeviceDetection.mockReturnValue({
+        type: 'mobile-sm',
+        width: 375,
+        height: 667,
         isMobile: true,
         isTablet: false,
         isDesktop: false,
-        screenWidth: 375,
-        screenHeight: 667
+        scale: 0.4,
+        orientation: 'portrait',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 15
       })
 
       const { result, rerender } = renderHook(() => useResponsiveValue({
@@ -388,11 +496,17 @@ describe.skip('useResponsiveUtils', () => {
 
       // Simular mudança para desktop
       mockUseDeviceDetection.mockReturnValue({
+        type: 'desktop',
+        width: 1920,
+        height: 1080,
         isMobile: false,
         isTablet: false,
         isDesktop: true,
-        screenWidth: 1920,
-        screenHeight: 1080
+        scale: 1,
+        orientation: 'landscape',
+        isHighDPI: false,
+        isUltraWide: false,
+        margin: 40
       })
 
       rerender()

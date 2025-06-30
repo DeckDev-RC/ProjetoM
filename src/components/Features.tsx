@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useDeviceDetection } from "@/hooks/use-mobile";
 import { useResponsiveValue, useResponsiveAnimation } from "@/hooks/useResponsiveUtils";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import { useTranslation } from "react-i18next";
 
 interface ImageCardProps {
   imageSrc: string;
@@ -23,6 +24,7 @@ const ImageCard = ({
   position,
   activeIndex
 }: ImageCardProps) => {
+  const { t } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -66,31 +68,13 @@ const ImageCard = ({
     };
   }, []);
   
-  // Títulos e subtítulos baseados no índice
-  const titles = [
-    { sub: "Agente de Vendas" },
-    { sub: "Agente de Atendimento" },
-    { sub: "Agente de Processos" },
-  ];
-
-  // Conteúdo do verso dos cards
-  const backContent = [
-    {
-      title: "Agente de Vendas",
-      description: "Automatiza todo o processo de vendas, desde a prospecção até o fechamento. Identifica leads qualificados, personaliza abordagens e otimiza conversões.",
-      features: ["• Prospecção inteligente", "• Qualificação automática", "• Follow-up personalizado", "• Análise de conversão"]
-    },
-    {
-      title: "Agente de Atendimento", 
-      description: "Oferece suporte 24/7 com respostas precisas e contextualizadas. Resolve dúvidas, processa solicitações e escala casos complexos.",
-      features: ["• Atendimento 24/7", "• Respostas contextuais", "• Escalação inteligente", "• Histórico completo"]
-    },
-    {
-      title: "Agente de Processos",
-      description: "Gerencia processos internos e otimiza fluxos de trabalho. Automatiza tarefas repetitivas e monitora performance em tempo real.",
-      features: ["• Automação de processos", "• Monitoramento contínuo", "• Otimização de fluxos", "• Relatórios detalhados"]
-    }
-  ];
+  // Títulos e conteúdo baseados no índice usando traduções
+  const agentKeys = ['sales', 'support', 'process'] as const;
+  const agentKey = agentKeys[index];
+  
+  const title = t(`features.agents.${agentKey}.title`);
+  const description = t(`features.agents.${agentKey}.description`);
+  const features = t(`features.agents.${agentKey}.features`, { returnObjects: true }) as string[];
 
   // Imagens para cada card
   const images = [
@@ -150,13 +134,13 @@ const ImageCard = ({
               
               {/* Imagem posicionada mais abaixo */}
               <div className="absolute top-20 left-0 right-0 bottom-0">
-                <ResponsiveImage 
-                  src={images[index]} 
-                  webpSrc={images[index].replace('.png', '.webp')}
-                  alt={titles[index].sub} 
-                  className="w-full h-full object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+                              <ResponsiveImage 
+                src={images[index]} 
+                webpSrc={images[index].replace('.png', '.webp')}
+                alt={title} 
+                className="w-full h-full object-cover object-top"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
               </div>
               
               {/* Overlay com gradiente para melhor legibilidade do texto */}
@@ -164,12 +148,12 @@ const ImageCard = ({
               
               {/* Texto sobreposto */}
               <div className="absolute top-5 left-4 right-4 z-20 text-center">
-                <h3 
-                  className={`${cardSize.fontSize} font-bold text-white leading-tight`}
-                  style={{ fontFamily: 'Brockmann, sans-serif' }}
-                >
-                  {titles[index].sub}
-                </h3>
+                              <h3 
+                className={`${cardSize.fontSize} font-bold text-white leading-tight`}
+                style={{ fontFamily: 'Brockmann, sans-serif' }}
+              >
+                {title}
+              </h3>
               </div>
             </div>
           </div>
@@ -190,17 +174,17 @@ const ImageCard = ({
               className={`${cardSize.fontSize} font-bold text-white mb-4 text-center`}
               style={{ fontFamily: 'Brockmann, sans-serif' }}
             >
-              {backContent[index].title}
+              {title}
             </h3>
             
             {/* Descrição */}
             <p className={`text-gray-300 ${cardSize.descriptionSize} leading-relaxed mb-6 text-center font-sans`}>
-              {backContent[index].description}
+              {description}
             </p>
             
             {/* Lista de recursos */}
             <div className="space-y-2">
-              {backContent[index].features.map((feature, idx) => (
+              {features.map((feature, idx) => (
                 <p key={idx} className={`text-gray-200 ${cardSize.featuresSize} font-sans`}>
                   {feature}
                 </p>
@@ -209,7 +193,7 @@ const ImageCard = ({
             
             {/* Indicador de clique */}
             <div className="absolute bottom-4 right-4 text-gray-500 text-xs">
-              Clique para voltar
+              {t('features.clickToFlip')}
             </div>
           </div>
         </div>
@@ -218,6 +202,7 @@ const ImageCard = ({
 };
 
 const Features = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
   
@@ -277,7 +262,7 @@ const Features = () => {
           <div className="flex items-center gap-4">
             <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-violet-100/80 dark:bg-violet-900/50 text-violet-600 dark:text-violet-300 border border-violet-200/50 dark:border-violet-700/50 backdrop-blur-sm">
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-violet-500 text-white mr-2 font-sans">04</span>
-              <span className="font-sans">Recursos</span>
+              <span className="font-sans">{t('features.badge')}</span>
             </div>
           </div>
           <div className="flex-1 h-[1px] bg-violet-300/60 dark:bg-violet-700/60"></div>
@@ -286,7 +271,7 @@ const Features = () => {
         {/* Main content */}
         <div className="max-w-5xl text-center mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display leading-tight mb-8 sm:mb-12 text-white">
-            Alguns de Nossos Agentes<br />
+            {t('features.title')}<br />
             <span 
               className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
               style={{
@@ -294,7 +279,7 @@ const Features = () => {
                 animation: 'gradientFlow 3s ease-in-out infinite'
               }}
             >
-              Prontos para Você
+              {t('features.titleGradient')}
             </span>
           </h2>
         </div>

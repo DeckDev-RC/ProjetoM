@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
-import { FloatingOrbs } from "@/components/ui/orbs";
-import { ArrowUp, FileText, Shield, Database, CreditCard, UserCheck, AlertTriangle, Scale, Clock, Phone, Home, ChevronLeft } from "lucide-react";
+
+import { ArrowUp, FileText, Shield, Settings, Eye, UserCheck, AlertTriangle, Scale, Clock, Phone, Home, ChevronLeft, Lock, CreditCard, XCircle, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
+import { useLanguageSync } from "@/hooks/useLanguageSync";
+import LanguageSwitch from "@/components/LanguageSwitch";
 
 const TermsOfService = () => {
+  const { t } = useTranslation();
+  useLanguageSync(); // Garantir sincronização do idioma
   const [activeSection, setActiveSection] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -62,26 +67,22 @@ const TermsOfService = () => {
   };
 
   const sections = [
-    { id: "acceptance", title: "Aceitação dos Termos", icon: UserCheck },
-    { id: "definitions", title: "Definições", icon: FileText },
-    { id: "services", title: "Descrição dos Serviços", icon: Database },
-    { id: "client-responsibilities", title: "Responsabilidades do Cliente", icon: Shield },
-    { id: "our-responsibilities", title: "Nossas Responsabilidades", icon: UserCheck },
-    { id: "intellectual-property", title: "Propriedade Intelectual", icon: Shield },
-    { id: "data-protection", title: "Proteção de Dados", icon: Database },
-    { id: "limitations", title: "Limitações e Garantias", icon: AlertTriangle },
-    { id: "payments", title: "Pagamentos", icon: CreditCard },
-    { id: "termination", title: "Rescisão", icon: Clock },
-    { id: "general", title: "Disposições Gerais", icon: Scale }
+    { id: "acceptance", title: t('terms.sections.acceptance'), icon: FileText },
+    { id: "definitions", title: t('terms.sections.definitions'), icon: BookOpen },
+    { id: "services", title: t('terms.sections.services'), icon: Settings },
+    { id: "client-responsibilities", title: t('terms.sections.clientResponsibilities'), icon: UserCheck },
+    { id: "our-responsibilities", title: t('terms.sections.ourResponsibilities'), icon: Shield },
+    { id: "intellectual-property", title: t('terms.sections.intellectualProperty'), icon: Lock },
+    { id: "data-protection", title: t('terms.sections.dataProtection'), icon: Shield },
+    { id: "limitations", title: t('terms.sections.limitations'), icon: AlertTriangle },
+    { id: "payments", title: t('terms.sections.payments'), icon: CreditCard },
+    { id: "termination", title: t('terms.sections.termination'), icon: XCircle },
+    { id: "general", title: t('terms.sections.general'), icon: Scale }
   ];
 
   return (
     <div className="min-h-screen relative bg-gray-950">
-      {/* Background Orbs */}
-      <FloatingOrbs orbCount={20} sectionId="terms-background" enableMouseFollow={true} />
-      
-      {/* Frosted Glass Overlay */}
-      <div className="fixed inset-0 z-[1] pointer-events-none frosted-glass-overlay" />
+
       
       {/* Navbar customizada para página de termos */}
       <header
@@ -108,20 +109,22 @@ const TermsOfService = () => {
 
           {/* Navegação central */}
           <div className="hidden md:flex items-center space-x-6">
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20">
-              <Scale className="w-4 h-4 text-violet-400" />
-              <span className="text-sm font-medium text-violet-200 font-sans">Termos Legais</span>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+              <FileText className="w-4 h-4 text-blue-400" />
+              <span className="text-sm font-medium text-blue-200 font-sans">{t('terms.badge')}</span>
             </div>
           </div>
 
-          {/* Botão voltar */}
+          {/* Botão voltar e seletor de idioma */}
           <div className="flex items-center gap-4">
+            <LanguageSwitch />
+            
             <a
               href="/"
               className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700/50 hover:border-gray-600/50 text-gray-300 hover:text-white transition-all duration-300 font-sans"
             >
               <ChevronLeft className="w-4 h-4" />
-              Voltar
+              {t('terms.backButton')}
             </a>
             
             {/* Mobile - apenas ícone */}
@@ -136,18 +139,18 @@ const TermsOfService = () => {
         </div>
       </header>
       
-      <main className="relative z-10 pt-24">
+      <main className="relative z-20 pt-24">
         {/* Hero Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-violet-100/80 dark:bg-violet-900/50 text-violet-600 dark:text-violet-300 border border-violet-200/50 dark:border-violet-700/50 mb-6 backdrop-blur-sm">
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-violet-500 text-white mr-2 font-sans">⚖</span>
-                <span className="font-sans">Termos Legais</span>
+              <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100/80 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 border border-blue-200/50 dark:border-blue-700/50 mb-6 backdrop-blur-sm">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white mr-2 font-sans">📋</span>
+                <span className="font-sans">{t('terms.badge')}</span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
-                Termos de
+                {t('terms.title')}
                 <br />
                 <span 
                   className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
@@ -156,7 +159,7 @@ const TermsOfService = () => {
                     animation: 'gradientFlow 3s ease-in-out infinite'
                   }}
                 >
-                  Serviço
+                  {t('terms.titleGradient')}
                 </span>
               </h1>
               
@@ -177,20 +180,19 @@ const TermsOfService = () => {
               }} />
               
               <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8 font-sans">
-                Última atualização: 25 de janeiro de 2025
+                {t('terms.lastUpdated')}
               </p>
               
-              <div className="bg-violet-500/10 border border-violet-500/20 rounded-lg p-4 max-w-2xl mx-auto">
-                <p className="text-sm text-violet-200 font-sans">
-                  Estes termos regem o uso dos serviços de inteligência artificial da Mind AI Tecnologia. 
-                  Ao contratar nossos serviços, você concorda com todos os termos descritos abaixo.
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 max-w-2xl mx-auto">
+                <p className="text-sm text-blue-200 font-sans">
+                  {t('terms.description')}
                 </p>
               </div>
             </div>
 
             {/* Índice */}
             <div className="max-w-4xl mx-auto mb-16">
-              <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">Índice</h2>
+              <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">{t('terms.index')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {sections.map((section, index) => {
                   const Icon = section.icon;
@@ -200,11 +202,11 @@ const TermsOfService = () => {
                       href={`#${section.id}`}
                       className={`flex items-center gap-3 p-4 rounded-lg border transition-all duration-300 hover:scale-105 ${
                         activeSection === section.id
-                          ? 'bg-violet-500/20 border-violet-500/50 text-violet-200'
+                          ? 'bg-blue-500/20 border-blue-500/50 text-blue-200'
                           : 'bg-gray-800/50 border-gray-700/50 text-gray-300 hover:bg-gray-700/50'
                       }`}
                     >
-                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-violet-500 text-white text-sm font-bold">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white text-sm font-bold">
                         {index + 1}
                       </span>
                       <Icon className="w-5 h-5" />
@@ -224,23 +226,21 @@ const TermsOfService = () => {
           <section id="acceptance" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <UserCheck className="w-6 h-6 text-violet-400" />
-                1. Aceitação dos Termos
+                <FileText className="w-6 h-6 text-blue-400" />
+                1. {t('terms.content.acceptance.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <p className="text-gray-300 mb-4">
-                  Ao contratar os serviços da Mind AI Tecnologia, pessoa jurídica de direito privado, 
-                  inscrita no CNPJ sob o nº [CNPJ], com sede na R. S-1, Q. 153 - L. 25 - St. Bueno, Goiânia - GO, 74230-220, você ("Cliente") 
-                  concorda expressamente com estes Termos de Serviço.
-                </p>
-                <p className="text-gray-300 mb-4">
-                  Estes termos constituem um acordo legal vinculativo entre você e a Mind AI Tecnologia. 
-                  Se você não concorda com qualquer parte destes termos, não deve contratar nossos serviços.
-                </p>
-                <p className="text-gray-300">
-                  A contratação pode ocorrer através de proposta comercial assinada, aceite eletrônico 
-                  ou início da prestação dos serviços após aprovação mútua do escopo do projeto.
-                </p>
+                {(t('terms.content.acceptance.content', { returnObjects: true }) as string[]).map((paragraph: string, index: number) => (
+                  <p key={index} className="text-gray-300 mb-4">
+                    {paragraph}
+                  </p>
+                ))}
+                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                  <p className="text-blue-200 font-medium">
+                    <Lock className="w-4 h-4 inline mr-2" />
+                    A contratação implica na aceitação integral destes termos.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -249,26 +249,26 @@ const TermsOfService = () => {
           <section id="definitions" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <FileText className="w-6 h-6 text-blue-400" />
-                2. Definições
+                <BookOpen className="w-6 h-6 text-blue-400" />
+                2. {t('terms.content.definitions.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <div className="grid gap-4">
-                  <div className="bg-gray-900/50 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-blue-300 mb-2">Serviços de IA</h4>
-                    <p className="text-gray-300">Desenvolvimento, implementação e manutenção de soluções de inteligência artificial personalizadas, incluindo agentes inteligentes, automação de processos e integração com sistemas existentes.</p>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.definitions.items.aiServices.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.definitions.items.aiServices.description')}</p>
                   </div>
-                  <div className="bg-gray-900/50 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-2">Agentes Inteligentes</h4>
-                    <p className="text-gray-300">Sistemas de IA capazes de executar tarefas específicas de forma autônoma, como atendimento ao cliente, vendas, gestão de processos e análise de dados.</p>
+                  <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.definitions.items.intelligentAgents.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.definitions.items.intelligentAgents.description')}</p>
                   </div>
-                  <div className="bg-gray-900/50 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-pink-300 mb-2">Dados do Cliente</h4>
-                    <p className="text-gray-300">Todas as informações, dados, arquivos, bases de dados e conteúdo fornecidos pelo Cliente para desenvolvimento e operação dos serviços de IA.</p>
+                  <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-indigo-300 mb-2">{t('terms.content.definitions.items.clientData.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.definitions.items.clientData.description')}</p>
                   </div>
-                  <div className="bg-gray-900/50 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-green-300 mb-2">Solução Personalizada</h4>
-                    <p className="text-gray-300">Sistema de IA desenvolvido especificamente para atender às necessidades e processos únicos do Cliente.</p>
+                  <div className="bg-cyan-500/10 border border-cyan-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-cyan-300 mb-2">{t('terms.content.definitions.items.customSolution.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.definitions.items.customSolution.description')}</p>
                   </div>
                 </div>
               </div>
@@ -279,29 +279,29 @@ const TermsOfService = () => {
           <section id="services" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Database className="w-6 h-6 text-indigo-400" />
-                3. Descrição dos Serviços
+                <Settings className="w-6 h-6 text-purple-400" />
+                3. {t('terms.content.services.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <p className="text-gray-300 mb-6">
-                  A Mind AI Tecnologia oferece os seguintes serviços principais:
+                  {t('terms.content.services.description')}
                 </p>
                 <div className="grid gap-4">
-                  <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-indigo-300 mb-2">Desenvolvimento de IA Personalizada</h4>
-                    <p className="text-gray-300">Criação de agentes inteligentes sob medida para automatizar processos específicos do seu negócio.</p>
-                  </div>
                   <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-2">Integração de Sistemas</h4>
-                    <p className="text-gray-300">Conexão dos agentes de IA com CRMs, ERPs, bancos de dados e ferramentas existentes.</p>
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.services.items.development.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.services.items.development.description')}</p>
+                  </div>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.services.items.integration.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.services.items.integration.description')}</p>
                   </div>
                   <div className="bg-pink-500/10 border border-pink-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-pink-300 mb-2">Automação de Processos</h4>
-                    <p className="text-gray-300">Implementação de fluxos automatizados para vendas, atendimento, gestão e análise de dados.</p>
+                    <h4 className="text-lg font-semibold text-pink-300 mb-2">{t('terms.content.services.items.automation.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.services.items.automation.description')}</p>
                   </div>
-                  <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-lg">
-                    <h4 className="text-lg font-semibold text-green-300 mb-2">Suporte e Manutenção</h4>
-                    <p className="text-gray-300">Monitoramento contínuo, ajustes, melhorias e suporte técnico especializado.</p>
+                  <div className="bg-orange-500/10 border border-orange-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-orange-300 mb-2">{t('terms.content.services.items.support.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.services.items.support.description')}</p>
                   </div>
                 </div>
               </div>
@@ -312,37 +312,23 @@ const TermsOfService = () => {
           <section id="client-responsibilities" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Shield className="w-6 h-6 text-orange-400" />
-                4. Responsabilidades do Cliente
+                <UserCheck className="w-6 h-6 text-cyan-400" />
+                4. {t('terms.content.clientResponsibilities.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <p className="text-gray-300 mb-4">O Cliente compromete-se a:</p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Fornecer informações precisas e completas sobre seus processos e necessidades
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Disponibilizar acesso aos sistemas e dados necessários para desenvolvimento
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Colaborar ativamente durante o processo de desenvolvimento e testes
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Manter a confidencialidade das informações técnicas compartilhadas
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Realizar pagamentos conforme cronograma acordado
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Usar os serviços de forma legal e ética
-                  </li>
-                </ul>
+                <p className="text-gray-300 mb-6">
+                  {t('terms.content.clientResponsibilities.description')}
+                </p>
+                <div className="bg-cyan-500/10 border border-cyan-500/20 p-6 rounded-lg">
+                  <ul className="text-gray-300 space-y-2">
+                    {(t('terms.content.clientResponsibilities.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-cyan-400 mt-1">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </section>
@@ -351,37 +337,23 @@ const TermsOfService = () => {
           <section id="our-responsibilities" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <UserCheck className="w-6 h-6 text-teal-400" />
-                5. Nossas Responsabilidades
+                <Shield className="w-6 h-6 text-blue-400" />
+                5. {t('terms.content.ourResponsibilities.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <p className="text-gray-300 mb-4">A Mind AI Tecnologia compromete-se a:</p>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Desenvolver soluções de IA de acordo com as especificações acordadas
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Entregar os projetos dentro dos prazos estabelecidos
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Fornecer treinamento e documentação adequados
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Oferecer suporte técnico durante o período acordado
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Manter confidencialidade absoluta sobre dados e informações do Cliente
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                    Implementar medidas de segurança adequadas para proteção de dados
-                  </li>
-                </ul>
+                <p className="text-gray-300 mb-6">
+                  {t('terms.content.ourResponsibilities.description')}
+                </p>
+                <div className="bg-blue-500/10 border border-blue-500/20 p-6 rounded-lg">
+                  <ul className="text-gray-300 space-y-2">
+                    {(t('terms.content.ourResponsibilities.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-blue-400 mt-1">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </section>
@@ -390,33 +362,22 @@ const TermsOfService = () => {
           <section id="intellectual-property" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Shield className="w-6 h-6 text-yellow-400" />
-                6. Propriedade Intelectual
+                <Lock className="w-6 h-6 text-amber-400" />
+                6. {t('terms.content.intellectualProperty.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-yellow-300 mb-3">Código e Tecnologia</h4>
-                    <p className="text-gray-300">
-                      O código-fonte, algoritmos, modelos de IA e tecnologias desenvolvidas pela Mind AI 
-                      permanecem de propriedade exclusiva da empresa, sendo licenciados para uso do Cliente 
-                      conforme escopo acordado.
-                    </p>
+                <div className="space-y-4">
+                  <div className="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-amber-300 mb-2">{t('terms.content.intellectualProperty.items.codeAndTechnology.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.intellectualProperty.items.codeAndTechnology.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-yellow-300 mb-3">Dados do Cliente</h4>
-                    <p className="text-gray-300">
-                      Todos os dados fornecidos pelo Cliente permanecem de sua propriedade exclusiva. 
-                      A Mind AI não utilizará estes dados para outros fins além da prestação dos serviços contratados.
-                    </p>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.intellectualProperty.items.clientData.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.intellectualProperty.items.clientData.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-yellow-300 mb-3">Conhecimento Derivado</h4>
-                    <p className="text-gray-300">
-                      Insights, metodologias e conhecimentos gerais desenvolvidos durante a prestação dos 
-                      serviços poderão ser utilizados pela Mind AI em projetos futuros, desde que não 
-                      identifiquem ou comprometam informações específicas do Cliente.
-                    </p>
+                  <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.intellectualProperty.items.derivedKnowledge.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.intellectualProperty.items.derivedKnowledge.description')}</p>
                   </div>
                 </div>
               </div>
@@ -427,39 +388,31 @@ const TermsOfService = () => {
           <section id="data-protection" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Database className="w-6 h-6 text-cyan-400" />
-                7. Proteção de Dados e Privacidade
+                <Shield className="w-6 h-6 text-indigo-400" />
+                7. {t('terms.content.dataProtection.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <div className="bg-cyan-500/10 border border-cyan-500/20 p-4 rounded-lg mb-6">
-                  <p className="text-cyan-200 font-medium">
-                    Esta seção está em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018)
+                <div className="bg-indigo-500/10 border border-indigo-500/20 p-4 rounded-lg mb-6">
+                  <p className="text-indigo-200 font-medium">
+                    {t('terms.content.dataProtection.lgpdCompliance')}
                   </p>
                 </div>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">Tratamento de Dados</h4>
-                    <p className="text-gray-300">
-                      A Mind AI atua como operadora de dados pessoais, tratando informações exclusivamente 
-                      para prestação dos serviços contratados, sob instruções do Cliente (controlador).
-                    </p>
+                <div className="space-y-4">
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.dataProtection.items.dataProcessing.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.dataProtection.items.dataProcessing.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">Medidas de Segurança</h4>
-                    <ul className="space-y-2 text-gray-300">
-                      <li>• Criptografia de dados em trânsito e em repouso</li>
-                      <li>• Controles de acesso rigorosos</li>
-                      <li>• Monitoramento contínuo de segurança</li>
-                      <li>• Backup e recuperação de dados</li>
-                      <li>• Treinamento de equipe em proteção de dados</li>
+                  <div className="bg-pink-500/10 border border-pink-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-pink-300 mb-2">{t('terms.content.dataProtection.items.securityMeasures.title')}</h4>
+                    <ul className="text-gray-300 space-y-1 mt-2">
+                      {(t('terms.content.dataProtection.items.securityMeasures.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">Direitos dos Titulares</h4>
-                    <p className="text-gray-300">
-                      Garantimos o exercício dos direitos previstos na LGPD, incluindo acesso, correção, 
-                      anonimização, bloqueio, eliminação e portabilidade de dados pessoais.
-                    </p>
+                  <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.dataProtection.items.dataSubjectRights.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.dataProtection.items.dataSubjectRights.description')}</p>
                   </div>
                 </div>
               </div>
@@ -471,110 +424,91 @@ const TermsOfService = () => {
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
                 <AlertTriangle className="w-6 h-6 text-red-400" />
-                8. Limitações e Garantias
+                8. {t('terms.content.limitations.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
                 <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-300 mb-3">Garantias Oferecidas</h4>
-                    <ul className="space-y-2 text-gray-300">
-                      <li>• Funcionamento conforme especificações acordadas</li>
-                      <li>• Correção de bugs identificados durante período de garantia</li>
-                      <li>• Suporte técnico durante período estabelecido</li>
-                      <li>• Conformidade com padrões de segurança</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-red-300 mb-3">Limitações de Responsabilidade</h4>
-                    <p className="text-gray-300 mb-4">
-                      A Mind AI não se responsabiliza por:
-                    </p>
-                    <ul className="space-y-2 text-gray-300">
-                      <li>• Decisões tomadas com base em resultados dos sistemas de IA</li>
-                      <li>• Danos decorrentes de uso inadequado ou não autorizado</li>
-                      <li>• Falhas em sistemas de terceiros integrados</li>
-                      <li>• Interrupções por motivos de força maior</li>
-                      <li>• Lucros cessantes ou danos indiretos</li>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-3">{t('terms.content.limitations.warranties.title')}</h4>
+                    <ul className="text-gray-300 space-y-1">
+                      {(t('terms.content.limitations.warranties.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
-                    <p className="text-red-200 font-medium">
-                      A responsabilidade total da Mind AI está limitada ao valor total pago pelo Cliente 
-                      no projeto específico onde ocorreu o problema.
-                    </p>
+                    <h4 className="text-lg font-semibold text-red-300 mb-3">{t('terms.content.limitations.limitations.title')}</h4>
+                    <p className="text-gray-300 mb-3">{t('terms.content.limitations.limitations.description')}</p>
+                    <ul className="text-gray-300 space-y-1 mb-4">
+                      {(t('terms.content.limitations.limitations.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      ))}
+                    </ul>
+                    <div className="bg-red-600/20 border border-red-500/30 p-3 rounded">
+                      <p className="text-red-200 font-medium text-sm">
+                        <AlertTriangle className="w-4 h-4 inline mr-2" />
+                        {t('terms.content.limitations.limitations.limitationNote')}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* 9. Pagamentos */}
+          {/* 9. Condições de Pagamento */}
           <section id="payments" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <CreditCard className="w-6 h-6 text-emerald-400" />
-                9. Condições de Pagamento
+                <CreditCard className="w-6 h-6 text-yellow-400" />
+                9. {t('terms.content.payments.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-emerald-300 mb-3">Valores e Cronograma</h4>
-                    <p className="text-gray-300">
-                      Os valores são estabelecidos na proposta comercial específica de cada projeto, 
-                      com cronograma de pagamento vinculado às entregas e marcos do desenvolvimento.
-                    </p>
+                <div className="space-y-4">
+                  <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-yellow-300 mb-2">{t('terms.content.payments.items.valuesAndSchedule.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.payments.items.valuesAndSchedule.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-emerald-300 mb-3">Formas de Pagamento</h4>
-                    <ul className="space-y-2 text-gray-300">
-                      <li>• Transferência bancária (PIX, TED, DOC)</li>
-                      <li>• Boleto bancário</li>
-                      <li>• Outras formas acordadas na proposta</li>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.payments.items.paymentMethods.title')}</h4>
+                    <ul className="text-gray-300 space-y-1 mt-2">
+                      {(t('terms.content.payments.items.paymentMethods.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-emerald-300 mb-3">Atraso no Pagamento</h4>
-                    <p className="text-gray-300">
-                      O atraso no pagamento superior a 15 dias pode resultar na suspensão dos serviços 
-                      e cobrança de juros de 1% ao mês, além de multa de 2% sobre o valor em atraso.
-                    </p>
+                  <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-red-300 mb-2">{t('terms.content.payments.items.latePayment.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.payments.items.latePayment.description')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* 10. Rescisão */}
+          {/* 10. Rescisão do Contrato */}
           <section id="termination" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Clock className="w-6 h-6 text-amber-400" />
-                10. Rescisão do Contrato
+                <XCircle className="w-6 h-6 text-orange-400" />
+                10. {t('terms.content.termination.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-amber-300 mb-3">Rescisão por Acordo Mútuo</h4>
-                    <p className="text-gray-300">
-                      O contrato pode ser rescindido a qualquer momento por acordo entre as partes, 
-                      com acerto financeiro proporcional aos serviços já prestados.
-                    </p>
+                <div className="space-y-4">
+                  <div className="bg-orange-500/10 border border-orange-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-orange-300 mb-2">{t('terms.content.termination.items.mutualAgreement.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.termination.items.mutualAgreement.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-amber-300 mb-3">Rescisão por Inadimplemento</h4>
-                    <p className="text-gray-300">
-                      Qualquer das partes pode rescindir o contrato em caso de descumprimento material 
-                      das obrigações, após notificação e prazo de 15 dias para regularização.
-                    </p>
+                  <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-red-300 mb-2">{t('terms.content.termination.items.breach.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.termination.items.breach.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-amber-300 mb-3">Efeitos da Rescisão</h4>
-                    <ul className="space-y-2 text-gray-300">
-                      <li>• Cessação imediata dos serviços em desenvolvimento</li>
-                      <li>• Entrega de materiais e códigos já desenvolvidos</li>
-                      <li>• Pagamento proporcional dos serviços prestados</li>
-                      <li>• Devolução de dados e informações confidenciais</li>
-                      <li>• Manutenção das obrigações de confidencialidade</li>
+                  <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.termination.items.effects.title')}</h4>
+                    <ul className="text-gray-300 space-y-1 mt-2">
+                      {(t('terms.content.termination.items.effects.items', { returnObjects: true }) as string[]).map((item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -586,67 +520,74 @@ const TermsOfService = () => {
           <section id="general" className="mb-16">
             <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-8">
               <h2 className="text-2xl font-display font-bold text-white mb-6 flex items-center gap-3">
-                <Scale className="w-6 h-6 text-slate-400" />
-                11. Disposições Gerais
+                <Scale className="w-6 h-6 text-teal-400" />
+                11. {t('terms.content.general.title')}
               </h2>
               <div className="prose prose-invert max-w-none font-sans">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-slate-300 mb-3">Lei Aplicável</h4>
-                    <p className="text-gray-300">
-                      Este contrato é regido pelas leis da República Federativa do Brasil, 
-                      especialmente pelo Código Civil, Código de Defesa do Consumidor (quando aplicável) 
-                      e Lei Geral de Proteção de Dados.
-                    </p>
+                <div className="space-y-4">
+                  <div className="bg-teal-500/10 border border-teal-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-teal-300 mb-2">{t('terms.content.general.items.applicableLaw.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.general.items.applicableLaw.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-slate-300 mb-3">Foro Competente</h4>
-                    <p className="text-gray-300">
-                      Fica eleito o foro da comarca de [Cidade/Estado] para dirimir quaisquer 
-                      controvérsias decorrentes deste contrato, renunciando as partes a qualquer outro.
-                    </p>
+                  <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-300 mb-2">{t('terms.content.general.items.competentForum.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.general.items.competentForum.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-slate-300 mb-3">Modificações</h4>
-                    <p className="text-gray-300">
-                      Estes termos podem ser atualizados periodicamente. Clientes ativos serão 
-                      notificados com 30 dias de antecedência sobre mudanças significativas.
-                    </p>
+                  <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-purple-300 mb-2">{t('terms.content.general.items.modifications.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.general.items.modifications.description')}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-slate-300 mb-3">Contato</h4>
-                    <p className="text-gray-300">
-                      Para dúvidas sobre estes termos, entre em contato através dos canais oficiais 
-                      disponíveis em nosso site ou por e-mail: contato@mindtecnologia-ai.com.br
-                    </p>
+                  <div className="bg-pink-500/10 border border-pink-500/20 p-4 rounded-lg">
+                    <h4 className="text-lg font-semibold text-pink-300 mb-2">{t('terms.content.general.items.contact.title')}</h4>
+                    <p className="text-gray-300">{t('terms.content.general.items.contact.description')}</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Footer da página */}
-          <div className="text-center py-8 border-t border-gray-700">
-            <p className="text-gray-400 mb-4 font-sans">
-              Mind AI Tecnologia - Termos de Serviço
-            </p>
-            <p className="text-sm text-gray-500 font-sans">
-              Última atualização: 25 de janeiro de 2025
-            </p>
-          </div>
+          {/* Contato */}
+          <section className="mb-16">
+            <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-gray-700/50 rounded-xl p-8">
+              <h2 className="text-2xl font-display font-bold text-white mb-6 text-center">
+                Dúvidas sobre os Termos?
+              </h2>
+              <div className="text-center">
+                <p className="text-gray-300 mb-6 font-sans">
+                  Nossa equipe está disponível para esclarecer qualquer questão sobre estes termos de serviço.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="mailto:contato@mindtecnologia-ai.com.br"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 text-blue-200 hover:text-blue-100 transition-all duration-300 font-sans"
+                  >
+                    <Shield className="w-4 h-4" />
+                    contato@mindtecnologia-ai.com.br
+                  </a>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 hover:border-purple-500/50 text-purple-200 hover:text-purple-100 transition-all duration-300 font-sans"
+                  >
+                    <Phone className="w-4 h-4" />
+                    Fale Conosco
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
 
-      {/* Botão voltar ao topo */}
+      {/* Botão Voltar ao Topo */}
       <button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 z-50 bg-violet-500 hover:bg-violet-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label="Voltar ao topo"
+        className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        aria-label={t('common.backToTop')}
       >
         <ArrowUp className="w-5 h-5" />
       </button>
 
-      <div className="relative z-10">
+      <div className="relative z-20">
         <Footer />
       </div>
     </div>
