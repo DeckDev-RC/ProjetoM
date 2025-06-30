@@ -89,11 +89,22 @@
       "email": "Email*",
       "phone": "Phone Number*",
       "company": "Company Name",
-      "submit": "Request Proposal"
+      "submit": "Request Proposal",
+      "submitting": "Sending..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "phoneRequired": "Phone is required",
+      "phoneInvalid": "Invalid phone number"
     },
     "toast": {
       "title": "Proposal sent!",
-      "description": "We will contact you soon."
+      "description": "We will contact you soon.",
+      "errorTitle": "Error sending",
+      "errorDescription": "Please correct the highlighted fields and try again."
     }
   },
   "footer": {

@@ -102,9 +102,8 @@ const Hero = () => {
                   {/* Vídeo do card */}
                   <div className="absolute top-0 left-0 right-0 bottom-0" ref={imageRef}>
                     <LazyVideo
-                      src={["/0617.mp4"]}
+                      src={["/webm/0617.webm"]}
                       className="w-full h-full object-cover object-top"
-                      poster="/placeholder.svg"
                       onError={() => {
                         console.warn("Vídeo do hero não pôde ser carregado");
                       }}

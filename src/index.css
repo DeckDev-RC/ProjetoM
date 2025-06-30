@@ -145,6 +145,38 @@
   }
 }
 
+/* Animação otimizada para scroll - usando transform3d para GPU acceleration */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Animação de gradiente otimizada */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease-in-out infinite;
+  will-change: background-position;
+}
+
 .hover-lift {
   transition: transform 0.2s ease;
 }

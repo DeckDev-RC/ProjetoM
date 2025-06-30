@@ -89,11 +89,22 @@
       "email": "Email*",
       "phone": "Número de Telefone*",
       "company": "Nome da Empresa",
-      "submit": "Solicitar Proposta"
+      "submit": "Solicitar Proposta",
+      "submitting": "Enviando..."
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Email inválido",
+      "phoneRequired": "Telefone é obrigatório",
+      "phoneInvalid": "Telefone inválido"
     },
     "toast": {
       "title": "Proposta enviada!",
-      "description": "Entraremos em contato em breve."
+      "description": "Entraremos em contato em breve.",
+      "errorTitle": "Erro ao enviar",
+      "errorDescription": "Por favor, corrija os campos destacados e tente novamente."
     }
   },
   "footer": {

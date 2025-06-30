@@ -35,14 +35,14 @@ const ImageCard = ({
   
   // Tamanho do card responsivo - menor para mobile
   const cardSize = useResponsiveValue({
-    'mobile-xs': { height: 'h-[400px]', fontSize: 'text-lg', padding: 'p-4', descriptionSize: 'text-sm', featuresSize: 'text-xs' },
-    'mobile-sm': { height: 'h-[450px]', fontSize: 'text-xl', padding: 'p-5', descriptionSize: 'text-sm', featuresSize: 'text-xs' },
-    'mobile-md': { height: 'h-[500px]', fontSize: 'text-xl', padding: 'p-6', descriptionSize: 'text-base', featuresSize: 'text-sm' },
-    'tablet-sm': { height: 'h-[550px]', fontSize: 'text-2xl', padding: 'p-7', descriptionSize: 'text-base', featuresSize: 'text-sm' },
-    'tablet-md': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm' },
-    'tablet-lg': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm' },
-    'desktop': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm' }
-  }, { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm' });
+    'mobile-xs': { height: 'h-[400px]', fontSize: 'text-lg', padding: 'p-4', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-12', headerHeight: 'h-8', textTop: 'top-3' },
+    'mobile-sm': { height: 'h-[450px]', fontSize: 'text-xl', padding: 'p-5', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-14', headerHeight: 'h-8', textTop: 'top-3' },
+    'mobile-md': { height: 'h-[500px]', fontSize: 'text-xl', padding: 'p-6', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-16', headerHeight: 'h-9', textTop: 'top-4' },
+    'tablet-sm': { height: 'h-[550px]', fontSize: 'text-2xl', padding: 'p-7', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-18', headerHeight: 'h-10', textTop: 'top-4' },
+    'tablet-md': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' },
+    'tablet-lg': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' },
+    'desktop': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' }
+  }, { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' });
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,16 +129,17 @@ const ImageCard = ({
                 backgroundColor: bgColors[index]
               }}
             >
-              {/* Área escura do cabeçalho */}
-              <div className="absolute top-0 left-0 right-0 h-10 z-10" style={{ backgroundColor: bgColors[index] }} />
+                            {/* Área escura do cabeçalho */}
+              <div className={`absolute top-0 left-0 right-0 ${cardSize.headerHeight} z-10`} style={{ backgroundColor: bgColors[index] }} />
               
-              {/* Imagem posicionada mais abaixo */}
-              <div className="absolute top-20 left-0 right-0 bottom-0">
-                              <ResponsiveImage 
+              {/* Imagem posicionada responsivamente */}
+              <div className={`absolute ${cardSize.imageTop} left-0 right-0 bottom-0`}>
+              <ResponsiveImage 
                 src={images[index]} 
                 webpSrc={images[index].replace('.png', '.webp')}
                 alt={title} 
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 20%' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               </div>
@@ -147,7 +148,7 @@ const ImageCard = ({
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               
               {/* Texto sobreposto */}
-              <div className="absolute top-5 left-4 right-4 z-20 text-center">
+              <div className={`absolute ${cardSize.textTop} left-4 right-4 z-20 text-center`}>
                               <h3 
                 className={`${cardSize.fontSize} font-bold text-white leading-tight`}
                 style={{ fontFamily: 'Brockmann, sans-serif' }}

@@ -12,6 +12,7 @@ interface ResponsiveImageProps {
   webpSrcSet?: string;
   loading?: 'lazy' | 'eager';
   placeholder?: string;
+  style?: React.CSSProperties;
 }
 
 const ResponsiveImage: React.FC<ResponsiveImageProps> = ({ 
@@ -25,7 +26,8 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   srcSet,
   webpSrcSet,
   loading = 'lazy',
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PC9zdmc+'
+  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PC9zdmc+',
+  style
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -107,6 +109,7 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            style={style}
             onLoad={handleLoad}
             onError={handleError}
             width={width}
