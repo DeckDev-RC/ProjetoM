@@ -41,13 +41,14 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         {/* Botão */}
         <button
           onClick={handleWhatsAppClick}
-          className="relative flex items-center justify-center w-16 h-16 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95"
+          className="relative flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 active:scale-95"
+          style={{ width: '84px', height: '84px' }}
           aria-label="Falar no WhatsApp"
         >
           {/* Ícone do WhatsApp */}
           <svg
-            className="w-8 h-8"
-            fill="currentColor"
+            className="fill-current"
+            style={{ width: '42px', height: '42px' }}
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
