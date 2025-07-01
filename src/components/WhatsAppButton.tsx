@@ -24,7 +24,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
     <>
       {/* Botão Principal */}
       <div
-        className={`fixed bottom-6 left-[54px] z-50 ${className}`}
+        className={`fixed bottom-6 left-6 md:left-14 z-50 ${className}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
