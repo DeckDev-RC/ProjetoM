@@ -11,6 +11,7 @@ import ProcessOptimizationSection from "@/components/ProcessOptimizationSection"
 import PartnersSection from "@/components/PartnersSection";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SupabaseTestButton from "@/components/SupabaseTestButton";
 import { FloatingOrbs } from "@/components/ui/orbs";
 
 const Index = () => {
@@ -50,7 +51,7 @@ const Index = () => {
     <div className="min-h-screen relative bg-black">
       {/* 3 Orbs flutuantes no fundo de toda a página */}
       <FloatingOrbs 
-        orbCount={20} 
+        orbCount={16} 
         sectionId="main-page" 
         enableMouseFollow={true}
       />
@@ -76,6 +77,9 @@ const Index = () => {
         phoneNumber="5562993140780" 
         message="Olá! Gostaria de saber mais sobre as soluções de IA da Mind AI Tecnologia."
       />
+      
+      {/* Botão de teste do Supabase (apenas em desenvolvimento) */}
+      <SupabaseTestButton />
     </div>
   );
 };

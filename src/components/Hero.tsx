@@ -95,8 +95,8 @@ const Hero = () => {
       <div className="container px-4 sm:px-6 lg:px-8 relative z-10" ref={containerRef}>
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
           <div className="w-full lg:w-1/2">
-            <div 
-              className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/50 text-pulse-300 border border-pulse-700 mb-3 sm:mb-6 opacity-0 animate-fade-in" 
+                    <div 
+          className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/50 text-pulse-300 border border-pulse-700 mb-3 sm:mb-6 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.1s" }}
             >
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pulse-500 text-white mr-2 font-sans">01</span>

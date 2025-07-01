@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useToast } from '../components/ui/use-toast';
 import { useTranslation } from 'react-i18next';
+import { insertContactForm } from '../lib/supabase';
 
 interface FormData {
   name: string;
@@ -131,8 +132,15 @@ export const useContactForm = () => {
         return;
       }
 
-      // Simular envio (aqui você integraria com sua API)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Integração com Supabase
+      const result = await insertContactForm({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company
+      });
+
+      console.log('Contato salvo com sucesso:', result);
 
       toast({
         title: t('contact.toast.title'),

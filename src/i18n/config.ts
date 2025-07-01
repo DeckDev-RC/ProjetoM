@@ -47,6 +47,9 @@ i18n
     // Lista de idiomas suportados
     supportedLngs: ['pt', 'en'],
     nonExplicitSupportedLngs: true,
+  })
+  .catch((error) => {
+    console.error('Erro ao inicializar i18n:', error);
   });
 
 export default i18n; 

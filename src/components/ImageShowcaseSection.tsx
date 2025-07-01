@@ -16,19 +16,19 @@ const ImageShowcaseSection = () => {
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 animate-on-scroll">
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-900/50 text-indigo-300 border border-indigo-700/50 mb-4 backdrop-blur-sm">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500 text-white mr-2 font-sans">02</span>
+                          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500 text-white mr-2 font-sans">02</span>
             <span className="font-sans">{t('showcase.badge')}</span>
           </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-tight text-white mb-6 sm:mb-7 leading-loose">
-            <span>{t('showcase.title')}</span>
-            <br/>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 gradient-flow">
-              {t('showcase.titleGradient')}
-            </span>
+          <span>{t('showcase.title')}</span>
+          <br/>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 gradient-flow">
+                {t('showcase.titleGradient')}
+              </span>
           </h2>
           <p className="text-base sm:text-lg text-gray-400 font-sans">
-            {t('showcase.description')}
+          {t('showcase.description')}
           </p>
         </div>
         
@@ -56,13 +56,13 @@ const ImageShowcaseSection = () => {
             
             <div className="mt-6 flex flex-wrap gap-3">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-pulse-900/30 text-pulse-300 border border-pulse-700/50 font-sans">
-                {t('showcase.tags.customAI')}
+              {t('showcase.tags.customAI')}
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blurple-900/30 text-blurple-300 border border-blurple-700/50 font-sans">
-                {t('showcase.tags.smartAutomation')}
+              {t('showcase.tags.smartAutomation')}
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-violet-900/30 text-violet-300 border border-violet-700/50 font-sans">
-                {t('showcase.tags.customSolutions')}
+              {t('showcase.tags.customSolutions')}
               </span>
             </div>
           </div>
