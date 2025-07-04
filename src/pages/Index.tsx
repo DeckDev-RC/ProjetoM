@@ -11,7 +11,6 @@ import ProcessOptimizationSection from "@/components/ProcessOptimizationSection"
 import PartnersSection from "@/components/PartnersSection";
 import CookieBanner from "@/components/CookieBanner";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import SupabaseTestButton from "@/components/SupabaseTestButton";
 import { FloatingOrbs } from "@/components/ui/orbs";
 
 const Index = () => {
@@ -77,9 +76,6 @@ const Index = () => {
         phoneNumber="5562993140780" 
         message="Olá! Gostaria de saber mais sobre as soluções de IA da Mind AI Tecnologia."
       />
-      
-      {/* Botão de teste do Supabase (apenas em desenvolvimento) */}
-      <SupabaseTestButton />
     </div>
   );
 };

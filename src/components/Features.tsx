@@ -33,11 +33,11 @@ const ImageCard = ({
   const deviceInfo = useDeviceDetection();
   const animation = useResponsiveAnimation();
   
-  // Tamanho do card responsivo - ajustado para Galaxy A54 e similares
+  // Tamanho do card responsivo - menor para mobile
   const cardSize = useResponsiveValue({
-    'mobile-xs': { height: 'h-[400px]', fontSize: 'text-lg', padding: 'p-4', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-16', headerHeight: 'h-8', textTop: 'top-3' },
-    'mobile-sm': { height: 'h-[450px]', fontSize: 'text-xl', padding: 'p-5', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-18', headerHeight: 'h-8', textTop: 'top-3' },
-    'mobile-md': { height: 'h-[500px]', fontSize: 'text-xl', padding: 'p-6', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-9', textTop: 'top-4' },
+    'mobile-xs': { height: 'h-[400px]', fontSize: 'text-lg', padding: 'p-4', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-12', headerHeight: 'h-8', textTop: 'top-3' },
+    'mobile-sm': { height: 'h-[450px]', fontSize: 'text-xl', padding: 'p-5', descriptionSize: 'text-sm', featuresSize: 'text-xs', imageTop: 'top-14', headerHeight: 'h-8', textTop: 'top-3' },
+    'mobile-md': { height: 'h-[500px]', fontSize: 'text-xl', padding: 'p-6', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-16', headerHeight: 'h-9', textTop: 'top-4' },
     'tablet-sm': { height: 'h-[550px]', fontSize: 'text-2xl', padding: 'p-7', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-18', headerHeight: 'h-10', textTop: 'top-4' },
     'tablet-md': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' },
     'tablet-lg': { height: 'h-[600px]', fontSize: 'text-2xl', padding: 'p-8', descriptionSize: 'text-base', featuresSize: 'text-sm', imageTop: 'top-20', headerHeight: 'h-10', textTop: 'top-5' },
@@ -129,17 +129,17 @@ const ImageCard = ({
                 backgroundColor: bgColors[index]
               }}
             >
-                            {/* Área escura do cabeçalho */}
+              {/* Área escura do cabeçalho - aumentada para dar mais espaço */}
               <div className={`absolute top-0 left-0 right-0 ${cardSize.headerHeight} z-10`} style={{ backgroundColor: bgColors[index] }} />
               
-              {/* Imagem posicionada responsivamente */}
+              {/* Imagem posicionada responsivamente - com mais espaço no topo */}
               <div className={`absolute ${cardSize.imageTop} left-0 right-0 bottom-0`}>
               <ResponsiveImage 
                 src={images[index]} 
                 webpSrc={images[index].replace('.png', '.webp')}
                 alt={title} 
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center top' }}
+                style={{ objectPosition: 'center 15%' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               </div>
@@ -147,7 +147,7 @@ const ImageCard = ({
               {/* Overlay com gradiente para melhor legibilidade do texto */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               
-              {/* Texto sobreposto */}
+              {/* Texto sobreposto - posicionado mais próximo do topo */}
               <div className={`absolute ${cardSize.textTop} left-4 right-4 z-20 text-center`}>
                               <h3 
                 className={`${cardSize.fontSize} font-bold text-white leading-tight`}
